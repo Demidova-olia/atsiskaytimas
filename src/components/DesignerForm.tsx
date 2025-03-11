@@ -72,6 +72,7 @@ const DesignerForm = ({ editDesignerData }: { editDesignerData?: Designer }) => 
       }
     } catch (error) {
       setError("An error occurred while saving the designer.");
+      console.log(error)
     }
   };
 
