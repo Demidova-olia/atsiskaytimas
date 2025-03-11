@@ -1,0 +1,56 @@
+.container {
+    padding: 20px;
+  }
+  
+  .backLink {
+    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+  
+  .orderDetails {
+    margin-top: 20px;
+  }
+  
+  .orderHeader {
+    font-size: 24px;
+  }
+  
+  .orderInfo {
+    margin: 10px 0;
+  }
+  
+  .itemContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .itemImage {
+    
+    height: 180px;
+    margin-right: 20px;
+    border-radius: 8px;
+  }
+  
+  .itemDetails {
+    max-width: 500px;
+  }
+  
+  .itemDetails h3 {
+    font-size: 20px;
+  }
+  
+  .itemDetails p {
+    margin: 5px 0;
+  }
+  
+  .quantityPrice {
+    margin-top: 20px;
+  }
+  
+  .quantityPrice p {
+    margin: 5px 0;
+  }
+  

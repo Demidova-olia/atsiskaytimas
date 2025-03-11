@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import { ApiContext } from "../../contexts/ApiContext";
 import { Order, Item } from "../../components/types";
+import styles from "./OrderPage.module.css";
 
 const OrderPage: React.FC = () => {
-
   const { orderId } = useParams<Record<string, string>>();
 
   const apiContext = useContext(ApiContext);
@@ -42,40 +42,28 @@ const OrderPage: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Order Details</h1>
-      <div style={{ marginBottom: "20px" }}>
-        <Link
-          to="/orders"
-          style={{
-            fontSize: "16px",
-            color: "#007BFF",
-            textDecoration: "none",
-          }}
-        >
-          Back to Orders
-        </Link>
+      <div className={styles.backLink}>
+        <Link to="/orders">Back to Orders</Link>
       </div>
 
-      <div>
-        <h2>Order #{selectedOrder.order_id}</h2>
-        <p><strong>Customer Name:</strong> {selectedOrder.customer_name}</p>
-        <p><strong>Order Date:</strong> {new Date(selectedOrder.order_date).toLocaleDateString()}</p>
-        <p><strong>Status:</strong> {selectedOrder.status}</p>
-        <p><strong>Shipping Address:</strong> {selectedOrder.shipping_address}</p>
+      <div className={styles.orderDetails}>
+        <h2 className={styles.orderHeader}>Order #{selectedOrder.order_id}</h2>
+        <div className={styles.orderInfo}>
+          <p><strong>Customer Name:</strong> {selectedOrder.customer_name}</p>
+          <p><strong>Order Date:</strong> {new Date(selectedOrder.order_date).toLocaleDateString()}</p>
+          <p><strong>Status:</strong> {selectedOrder.status}</p>
+          <p><strong>Shipping Address:</strong> {selectedOrder.shipping_address}</p>
+        </div>
 
-        <div style={{ display: "flex", alignItems: "center", marginTop: "20px" }}>
+        <div className={styles.itemContainer}>
           <img
             src={itemDetails.image}
             alt={itemDetails.name}
-            style={{
-              width: "150px",
-              height: "150px",
-              marginRight: "20px",
-              borderRadius: "8px",
-            }}
+            className={styles.itemImage}
           />
-          <div>
+          <div className={styles.itemDetails}>
             <h3>{itemDetails.name}</h3>
             <p><strong>Type:</strong> {itemDetails.type}</p>
             <p><strong>Material:</strong> {itemDetails.material}</p>
@@ -86,7 +74,7 @@ const OrderPage: React.FC = () => {
           </div>
         </div>
 
-        <div style={{ marginTop: "20px" }}>
+        <div className={styles.quantityPrice}>
           <p><strong>Quantity:</strong> {selectedOrder.quantity}</p>
           <p><strong>Total Price:</strong> {selectedOrder.total_price} {selectedOrder.currency}</p>
         </div>
@@ -96,3 +84,4 @@ const OrderPage: React.FC = () => {
 };
 
 export default OrderPage;
+
