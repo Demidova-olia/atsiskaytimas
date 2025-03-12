@@ -1,0 +1,48 @@
+.pageContainer {
+    padding: 20px;
+  }
+  
+  .header {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .designerImage {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .collections {
+    margin-top: 20px;
+  }
+  
+  .collectionLink {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .collectionLink:hover {
+    text-decoration: underline;
+  }
+  
+  /* CollectionPage.module.css */
+  .pageContainer {
+    padding: 20px;
+  }
+  
+  .header {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .itemLink {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .itemLink:hover {
+    text-decoration: underline;
+  }
+  

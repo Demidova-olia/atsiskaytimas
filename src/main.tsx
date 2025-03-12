@@ -10,6 +10,8 @@ import ItemsPage from './pages/collectionsAndItems/itemsPage.tsx';
 import ItemPage from './pages/collectionsAndItems/ItemPage.tsx';
 import CollectionsAndItemsPage from './pages/collectionsAndItems/CollectionsAndItemsPage.tsx';
 import OrderPage from './pages/orders/OrderPage.tsx';
+import DesignerPage from './pages/designers/DesignerPage.tsx';
+import CollectionPage from './pages/collectionsAndItems/CollectionPage.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -26,8 +28,8 @@ createRoot(document.getElementById('root')!).render(
 
           <Route path="designers">
             <Route index element={<DesignersPage />} />
-            {/* <Route path=":id" element={<DesignerPage />} />
-            <Route path="create" element={<CreateDesigner />} />
+            <Route path=":designerId" element={<DesignerPage />} />
+            {/* <Route path="create" element={<CreateDesigner />} />
             <Route path="edit/:id" element={<EditDesigner />} /> */}
           </Route>
 
@@ -35,7 +37,7 @@ createRoot(document.getElementById('root')!).render(
             <Route index element={<CollectionsAndItemsPage />} />
             <Route path=":collectionId/items" element={<ItemsPage />} />
             {/* <Route path=":itemId" element={<ItemPage />} /> */}
-            {/* <Route path=":id" element={<CollectionPage />} /> */}
+            <Route path=":collectionId" element={<CollectionPage />} />
             {/* <Route path="create" element={<CreateCollection />} />
             <Route path="edit/:id" element={<EditCollection />} /> */}
           </Route>
