@@ -28,7 +28,6 @@ const DesignerPage: React.FC = () => {
     return <p>Designer not found.</p>;
   }
 
-  // Helper function to find collections by collection_id
   const getCollectionById = (collectionId: string) => {
     return collections.find((collection) => collection.collection_id === collectionId);
   };
@@ -36,7 +35,11 @@ const DesignerPage: React.FC = () => {
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.header}>{designer.name}</h1>
-      <img src={designer.image} alt={designer.name} className={styles.designerImage} />
+      <img 
+        src={designer.image || '/path/to/fallback-image.jpg'}
+        alt={designer.name} 
+        className={styles.designerImage} 
+      />
       <p><strong>Bio:</strong> {designer.bio}</p>
       <p><strong>Country:</strong> {designer.country}</p>
       <p><strong>Contact:</strong> <a href={`mailto:${designer.contact.email}`}>{designer.contact.email}</a></p>
@@ -51,12 +54,13 @@ const DesignerPage: React.FC = () => {
             : "Collections:"}
         </h4>
         <ul>
-          {designer.collections.map((collectionId) => {
-            const collection = getCollectionById(collectionId);
-            return collection ? (
-              <li key={collection.collection_id}>
-                <Link to={`/collections/${collection.collection_id}`} className={styles.collectionLink}>
-                  {collection.name} ({collection.season} {collection.year})
+          {designer.collections.map((collection) => {
+
+            const collectionData = getCollectionById(collection.collection_id);
+            return collectionData ? (
+              <li key={collectionData.collection_id}>
+                <Link to={`/collections/${collectionData.collection_id}`} className={styles.collectionLink}>
+                  {collectionData.name} ({collectionData.season} {collectionData.year})
                 </Link>
               </li>
             ) : null;
@@ -68,3 +72,4 @@ const DesignerPage: React.FC = () => {
 };
 
 export default DesignerPage;
+

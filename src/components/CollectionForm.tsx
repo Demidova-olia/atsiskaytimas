@@ -7,7 +7,6 @@ import { Collection } from "./types";
 const CollectionForm = ({ editCollectionData }: { editCollectionData?: Collection }) => {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
-
   const [collection, setCollection] = useState<Collection>({
     collection_id: "",
     designer_id: "",
@@ -32,9 +31,24 @@ const CollectionForm = ({ editCollectionData }: { editCollectionData?: Collectio
   };
 
   const handleItemsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const itemNames = e.target.value.split(",").map((itemName) => itemName.trim());
+
     setCollection((prev) => ({
       ...prev,
-      items: e.target.value.split(",").map((i) => i.trim()),
+      items: itemNames.map((itemName, index) => ({
+        item_id: `item-${index}-${Math.random()}`,
+        collection_id: prev.collection_id,
+        name: itemName,
+        type: "", 
+        material: "", 
+        price: 0, 
+        currency: "", 
+        color: "", 
+        sizes_available: [], 
+        description: "", 
+        orders: [], 
+        image: "", 
+      })),
     }));
   };
 
@@ -81,7 +95,7 @@ const CollectionForm = ({ editCollectionData }: { editCollectionData?: Collectio
 
       <div className="form-control">
         <label htmlFor="items">Items (comma separated):</label>
-        <input type="text" name="items" id="items" value={collection.items.join(", ")} onChange={handleItemsChange} />
+        <input type="text" name="items" id="items" value={collection.items.map((item) => item.name).join(", ")} onChange={handleItemsChange} />
       </div>
 
       <button type="submit">{editCollectionData ? "Edit Collection" : "Create Collection"}</button>

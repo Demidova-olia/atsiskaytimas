@@ -12,7 +12,7 @@ const CollectionPage: React.FC = () => {
     return <p>Loading context...</p>;
   }
 
-  const { collections = [], items = [], loading, error } = apiContext;
+  const { collections = [], loading, error } = apiContext;
 
   if (loading) {
     return <p>Loading...</p>;
@@ -28,26 +28,20 @@ const CollectionPage: React.FC = () => {
     return <p>Collection not found.</p>;
   }
 
-  // Helper function to find items by item_id
-  const getItemById = (itemId: string) => {
-    return items.find((item) => item.item_id === itemId);
-  };
-
   return (
     <div className={styles.pageContainer}>
       <h1 className={styles.header}>{collection.name}</h1>
       <p><strong>Season:</strong> {collection.season} {collection.year}</p>
       <h4>Items in this collection:</h4>
       <ul>
-        {collection.items.map((itemId) => {
-          const item = getItemById(itemId);
-          return item ? (
+        {collection.items.map((item) => {
+          return (
             <li key={item.item_id}>
               <Link to={`/items/${item.item_id}`} className={styles.itemLink}>
                 {item.name} - ${item.price} {item.currency}
               </Link>
             </li>
-          ) : null;
+          );
         })}
       </ul>
     </div>
@@ -55,3 +49,5 @@ const CollectionPage: React.FC = () => {
 };
 
 export default CollectionPage;
+
+
