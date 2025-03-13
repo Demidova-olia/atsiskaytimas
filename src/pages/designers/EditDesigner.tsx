@@ -40,7 +40,6 @@ const EditDesigner: React.FC = () => {
   return (
     <div className={id}>
       <h1>Edit Designer</h1>
-      {/* Передаем designer в форму для редактирования */}
       {designer ? <DesignerForm editDesignerData={designer} /> : <p>No designer data available.</p>}
     </div>
   );

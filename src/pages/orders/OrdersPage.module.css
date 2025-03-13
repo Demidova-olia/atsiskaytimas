@@ -1,0 +1,67 @@
+.pageContainer {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .addOrderLink {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .addOrderLink:hover {
+    background-color: #218838;
+  }
+  
+  .orderList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .orderListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .orderImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 8px;
+  }
+  
+  .orderDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .orderId {
+    font-weight: bold;
+  }
+  
+  .orderCustomerName {
+    color: #555;
+  }
+  
+  .orderStatus {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .noOrdersMessage {
+    font-size: 1rem;
+    color: gray;
+  }
+  

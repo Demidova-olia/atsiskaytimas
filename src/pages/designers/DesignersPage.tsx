@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
 import { Link } from "react-router";
 import { ApiContext } from "../../contexts/ApiContext";
-import { Designer } from "../../components/types";
-import styles from './DesignersPage.module.css';  // Import the CSS module
+import { Designer, Collection, Item } from "../../components/types";
+import styles from './DesignersPage.module.css';
 
 const DesignersPage: React.FC = () => {
   const apiContext = useContext(ApiContext);
 
+  // Ensure apiContext and its properties are available
   if (!apiContext) {
     return <p>Loading context...</p>;
   }
 
-  const { designers = [], collections = [], loading, error } = apiContext;
+  const { designers = [], collections = [], items = [], loading, error } = apiContext;
 
   if (loading) {
     return <p>Loading...</p>;
@@ -21,9 +22,16 @@ const DesignersPage: React.FC = () => {
     return <p>Error: {error}</p>;
   }
 
-  // Create a helper function to find collections by collection_id
-  const getCollectionById = (collectionId: string) => {
-    return collections.find((collection) => collection.collection_id === collectionId);
+  const getCollectionsByDesignerId = (designerId: string) => {
+    const collectionsForDesigner = collections.filter(
+      (collection) => collection.designer_id === designerId
+    );
+    return collectionsForDesigner || [];
+  };
+
+  const getItemsByCollectionId = (collectionId: string) => {
+    const itemsForCollection = items.filter((item) => item.collection_id === collectionId);
+    return itemsForCollection || [];
   };
 
   return (
@@ -41,26 +49,37 @@ const DesignersPage: React.FC = () => {
                 {designer.designer_id}. {designer.name}
               </Link>
 
-              {/* Display collections for each designer */}
               <div className={styles.collections}>
-              <h4>
-                {designer.collections.length === 0
-                  ? "No collections yet"
-                  : designer.collections.length === 1
-                  ? "Collection:"
-                  : "Collections:"}
-              </h4>
+                <h4>
+                  {getCollectionsByDesignerId(designer.designer_id).length === 0
+                    ? "No collections yet"
+                    : getCollectionsByDesignerId(designer.designer_id).length === 1
+                    ? "Collection:"
+                    : "Collections:"}
+                </h4>
                 <ul>
-                  {designer.collections.map((collectionId) => {
-                    const collection = getCollectionById(collectionId);
-                    return collection ? (
-                      <li key={collection.collection_id}>
-                        <Link to={`/collections/${collection.collection_id}`} className={styles.collectionLink}>
-                          {collection.name} ({collection.season} {collection.year})
-                        </Link>
-                      </li>
-                    ) : null;
-                  })}
+                  {getCollectionsByDesignerId(designer.designer_id).map((collection: Collection) => (
+                    <li key={collection.collection_id}>
+                      <Link to={`/collections/${collection.collection_id}`} className={styles.collectionLink}>
+                        {collection.name} ({collection.season} {collection.year})
+                      </Link>
+
+                      <ul>
+                        {getItemsByCollectionId(collection.collection_id).map((item: Item) => (
+                          <li key={item.item_id} className={styles.item}>
+                            <Link to={`/items/${item.item_id}`} className={styles.itemLink}>
+                              <img src={item.image} alt={item.name} className={styles.itemImage} />
+                              <div className={styles.itemDetails}>
+                                <h4>{item.name}</h4>
+                                <p>{item.material}</p>
+                                <p>{item.price} {item.currency}</p>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </li>
@@ -74,6 +93,3 @@ const DesignersPage: React.FC = () => {
 };
 
 export default DesignersPage;
-
-
-

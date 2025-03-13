@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { useParams, Link } from "react-router";
+import { useParams, Link } from "react-router";  // Correct import for React Router
 import { ApiContext } from "../../contexts/ApiContext";
 import { Item } from "../../components/types";
+import styles from './ItemsPage.module.css';  // Import the CSS module
 
 const ItemsPage: React.FC = () => {
   const { collectionId } = useParams<{ collectionId: string }>();
@@ -24,24 +25,30 @@ const ItemsPage: React.FC = () => {
   const filteredItems = items.filter(item => item.collection_id === String(collectionId));
 
   return (
-    <div>
-      <h1>Items in Collection {collectionId}</h1>
+    <div className={styles.pageContainer}>
+      <h1 className={styles.header}>Items in Collection {collectionId}</h1>
+      <Link to="/items/create" className={styles.addItemLink}>Add New Item</Link>
       {filteredItems.length > 0 ? (
-        <ul>
+        <ul className={styles.itemsList}>
           {filteredItems.map((item: Item) => (
-            <li key={item.item_id}>
+            <li key={item.item_id} className={styles.itemListItem}>
               <Link to={`/items/${item.item_id}`}>
-                <img src={item.image} alt={item.name} style={{ width: "150px", height: "150px", objectFit: "cover" }} />
-                <p>{item.name}</p>
+                <img 
+                  src={item.image} 
+                  alt={item.name} 
+                  className={styles.itemImage} 
+                />
+                <p className={styles.itemName}>{item.name}</p>
               </Link>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No items found in this collection.</p>
+        <p className={styles.noItemsMessage}>No items found in this collection.</p>
       )}
     </div>
   );
 };
 
 export default ItemsPage;
+

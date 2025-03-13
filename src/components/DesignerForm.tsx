@@ -9,11 +9,10 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ editDesignerData }) => {
   const [error, setError] = useState<string | null>(null);
 
   const [designer, setDesigner] = useState({
-    designer_id: "",
+    designer_id: "",  // Initially empty for new designers
     name: "",
     bio: "",
     country: "",
-    collections: [], // Always empty collections
     image: "",
     contact: {
       email: "",
@@ -22,7 +21,7 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ editDesignerData }) => {
     },
   });
 
-  // Set designer data when editing
+  // Set designer data when editing an existing designer
   useEffect(() => {
     if (editDesignerData) {
       setDesigner({
@@ -30,7 +29,6 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ editDesignerData }) => {
         name: editDesignerData.name ?? "",
         bio: editDesignerData.bio ?? "",
         country: editDesignerData.country ?? "",
-        collections: [], // Empty collections array on edit
         image: editDesignerData.image ?? "",
         contact: {
           email: editDesignerData.contact?.email ?? "",
@@ -41,16 +39,16 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ editDesignerData }) => {
     }
   }, [editDesignerData]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
     setDesigner((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const handleContactChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
     setDesigner((prev) => ({
       ...prev,
       contact: {
@@ -60,29 +58,45 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ editDesignerData }) => {
     }));
   };
 
+  // Validate the URL (simple check for image URLs)
+  const isValidImageUrl = (url: string) => {
+    return /\.(jpeg|jpg|gif|png|webp)$/.test(url);
+  };
+
   const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!designer.name || !designer.contact.email) {
-      setError("Name and email are required");
+    // Basic form validation
+    if (!designer.name || !designer.contact.email || !designer.bio || !designer.country) {
+      setError("Name, email, bio, and country are required.");
+      return;
+    }
+
+    if (designer.image && !isValidImageUrl(designer.image)) {
+      setError("Please provide a valid image URL.");
       return;
     }
 
     try {
+      // Create an object for the form data, ensure collections are empty
       const designerData = {
         ...designer,
-        collections: [], // Ensuring collections are always empty
+        collections: [],  // Ensuring collections are always empty
       };
 
       let response;
       if (editDesignerData) {
-        // PUT request to update existing designer
+        // PUT request to update an existing designer (with designer_id)
         response = await axios.put(`${API_URL}/designers/${designer.designer_id}`, designerData);
       } else {
-        // POST request to create a new designer
-        response = await axios.post(`${API_URL}/designers`, designerData);
+        // POST request to create a new designer (designer_id will not be included)
+        const { designer_id, ...newDesignerData } = designerData; // Remove designer_id before POST
+        response = await axios.post(`${API_URL}/designers`, newDesignerData);
+        console.log(designer_id)
+        console.log(response.data)
       }
 
+      // Redirect after successful submission
       navigate(`/designers/${response.data.designer_id}`);
     } catch (error) {
       setError("An error occurred while saving the designer.");
@@ -180,3 +194,4 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ editDesignerData }) => {
 };
 
 export default DesignerForm;
+

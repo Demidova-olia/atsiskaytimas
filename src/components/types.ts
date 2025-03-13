@@ -9,9 +9,9 @@ export interface Designer {
   name: string;
   bio: string;
   country: string;
-  collections: Collection[];
   contact: Contact;
   image: string;
+  collections?: Collection[];
 }
 
 export interface Collection {
@@ -20,7 +20,7 @@ export interface Collection {
   name: string;
   season: string;
   year: number;
-  items: Item[];
+  items?: Item[]
 }
 
 export interface Item {
@@ -34,7 +34,6 @@ export interface Item {
   color: string;
   sizes_available: string[];
   description: string;
-  orders: Order[];
   image: string;
 }
 

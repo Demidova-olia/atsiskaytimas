@@ -5,7 +5,6 @@
       "name": "Anna Sui",
       "bio": "Anna Sui is an American fashion designer known for her eclectic and feminine designs.",
       "country": "USA",
-      "collections": ["1", "2"],
       "contact": {
         "email": "anna@example.com",
         "phone": "+1-800-123-4567",
@@ -18,7 +17,6 @@
       "name": "Virgil Abloh",
       "bio": "Virgil Abloh was an American designer known for his work at Louis Vuitton and Off-White.",
       "country": "USA",
-      "collections": ["3"],
       "contact": {
         "email": "virgil@example.com",
         "phone": "+1-800-987-6543",
@@ -33,24 +31,21 @@
       "designer_id": "1",
       "name": "Spring 2025 Collection",
       "season": "Spring",
-      "year": 2025,
-      "items": ["1", "2"]
+      "year": 2025
     },
     {
       "collection_id": "2",
       "designer_id": "1",
       "name": "Summer 2025 Collection",
       "season": "Summer",
-      "year": 2025,
-      "items": ["3"]
+      "year": 2025
     },
     {
       "collection_id": "3",
       "designer_id": "2",
       "name": "Off-White Fall/Winter 2025",
       "season": "Fall/Winter",
-      "year": 2025,
-      "items": ["4", "5"]
+      "year": 2025
     }
   ],
   "items": [
@@ -65,7 +60,6 @@
       "color": "Red",
       "sizes_available": ["S", "M", "L"],
       "description": "A beautiful floral dress perfect for spring events.",
-      "orders": ["1", "2"],
       "image": "https://th.bing.com/th/id/R.0e21ccea8ffb3b2e292a6ad4435a9f86?rik=LNqS19UP2RRW3A&pid=ImgRaw&r=0"
     },
     {
@@ -79,7 +73,6 @@
       "color": "Blue",
       "sizes_available": ["S", "M"],
       "description": "A stylish striped blouse ideal for casual outings.",
-      "orders": ["3"],
       "image": "https://i.pinimg.com/736x/dd/9f/38/dd9f380ae28269fc17dd9a33511cc36b.jpg"
     },
     {
@@ -93,7 +86,6 @@
       "color": "Light Blue",
       "sizes_available": ["M", "L"],
       "description": "Comfortable denim shorts for hot summer days.",
-      "orders": ["4"],
       "image": "https://handcmediastorage.blob.core.windows.net/productimages/SR/SRPZZ002-B40-170867-1400px-1820px.jpg"
     },
     {
@@ -107,7 +99,6 @@
       "color": "Black",
       "sizes_available": ["M", "L", "XL"],
       "description": "A limited edition hoodie with the Off-White logo.",
-      "orders": ["5"],
       "image": "https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/43/P00426238.jpg"
     },
     {
@@ -121,7 +112,6 @@
       "color": "White/Black",
       "sizes_available": ["40", "42", "44"],
       "description": "Trendy sneakers with the signature Off-White design.",
-      "orders": ["6"],
       "image": "https://th.bing.com/th/id/OIP.N2Lpe-xIDD4j46ypsx3UCAAAAA?rs=1&pid=ImgDetMain"
     }
   ],

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
-import { ApiContext } from "../../contexts/ApiContext";
-import { Order, Item } from "../../components/types";
 import styles from "./OrderPage.module.css";
+import { ApiContext } from "../../../contexts/ApiContext";
+import { Item, Order } from "../../../components/types";
 
 const OrderPage: React.FC = () => {
   const { orderId } = useParams<Record<string, string>>();

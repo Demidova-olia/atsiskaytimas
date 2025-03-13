@@ -1,0 +1,67 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.heading {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.designerInfo {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.image {
+    max-width: 250px;
+    border-radius: 8px;
+}
+
+.bio {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.controls {
+    display: flex;
+    gap: 20px;
+}
+
+.delete {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.editLink {
+    text-decoration: none;
+    color: blue;
+}
+
+.collectionsHeading {
+    font-size: 1.5rem;
+    margin-top: 40px;
+}
+
+.collectionsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.collectionItem {
+    margin-bottom: 10px;
+}
+
+.link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
