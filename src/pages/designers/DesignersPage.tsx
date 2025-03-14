@@ -1,18 +1,17 @@
-import React, { useContext } from "react";
-import { Link } from "react-router";
-import { ApiContext } from "../../contexts/ApiContext";
-import { Designer, Collection, Item } from "../../components/types";
+import React, { useContext } from 'react';
+import { Link } from 'react-router';
+import { ApiContext } from '../../contexts/ApiContext';
+import { Designer, Collection, Item } from '../../components/types';
 import styles from './DesignersPage.module.css';
 
 const DesignersPage: React.FC = () => {
   const apiContext = useContext(ApiContext);
 
-  // Ensure apiContext and its properties are available
   if (!apiContext) {
     return <p>Loading context...</p>;
   }
 
-  const { designers = [], collections = [], items = [], loading, error } = apiContext;
+  const { designers, collections, items, loading, error } = apiContext;
 
   if (loading) {
     return <p>Loading...</p>;
@@ -23,15 +22,11 @@ const DesignersPage: React.FC = () => {
   }
 
   const getCollectionsByDesignerId = (designerId: string) => {
-    const collectionsForDesigner = collections.filter(
-      (collection) => collection.designer_id === designerId
-    );
-    return collectionsForDesigner || [];
+    return collections.filter(collection => collection.designerId === designerId);
   };
 
   const getItemsByCollectionId = (collectionId: string) => {
-    const itemsForCollection = items.filter((item) => item.collection_id === collectionId);
-    return itemsForCollection || [];
+    return items.filter(item => item.collectionId === collectionId);
   };
 
   return (
@@ -41,33 +36,34 @@ const DesignersPage: React.FC = () => {
       {designers.length > 0 ? (
         <ul className={styles.designerList}>
           {designers.map((designer: Designer) => (
-            <li key={designer.designer_id} className={styles.designerItem}>
-              <Link to={`/designers/${designer.designer_id}`} className={styles.designerLink}>
+            <li key={designer.id} className={styles.designerItem}>
+              <Link to={`/designers/${designer.id}`} className={styles.designerLink}>
                 <div>
                   <img src={designer.image} alt={designer.name} className={styles.designerImage} />
                 </div>
-                {designer.designer_id}. {designer.name}
+                {designer.id}. {designer.name}
               </Link>
 
               <div className={styles.collections}>
                 <h4>
-                  {getCollectionsByDesignerId(designer.designer_id).length === 0
-                    ? "No collections yet"
-                    : getCollectionsByDesignerId(designer.designer_id).length === 1
-                    ? "Collection:"
-                    : "Collections:"}
+                  {getCollectionsByDesignerId(designer.id).length === 0
+                    ? "No collections yet   "
+                    : getCollectionsByDesignerId(designer.id).length === 1
+                    ? "Collection:  "
+                    : "Collections:  "}
+                    <Link to='/collections/create' className={styles.addDesignerLink}>Add Collection</Link>
                 </h4>
                 <ul>
-                  {getCollectionsByDesignerId(designer.designer_id).map((collection: Collection) => (
-                    <li key={collection.collection_id}>
-                      <Link to={`/collections/${collection.collection_id}`} className={styles.collectionLink}>
+                  {getCollectionsByDesignerId(designer.id).map((collection: Collection) => (
+                    <li key={collection.collectionId}>
+                      <Link to={`/collections/${collection.collectionId}`} className={styles.collectionLink}>
                         {collection.name} ({collection.season} {collection.year})
                       </Link>
 
                       <ul>
-                        {getItemsByCollectionId(collection.collection_id).map((item: Item) => (
-                          <li key={item.item_id} className={styles.item}>
-                            <Link to={`/items/${item.item_id}`} className={styles.itemLink}>
+                        {getItemsByCollectionId(collection.collectionId).map((item: Item) => (
+                          <li key={item.itemId} className={styles.item}>
+                            <Link to={`/items/${item.itemId}`} className={styles.itemLink}>
                               <img src={item.image} alt={item.name} className={styles.itemImage} />
                               <div className={styles.itemDetails}>
                                 <h4>{item.name}</h4>
@@ -93,3 +89,4 @@ const DesignersPage: React.FC = () => {
 };
 
 export default DesignersPage;
+

@@ -28,16 +28,16 @@ const OrdersPage: React.FC = () => {
       {orders.length > 0 ? (
         <ul className={styles.orderList}>
           {orders.map((order: Order) => (
-            <li key={order.order_id} className={styles.orderListItem}>
-              <Link to={`/orders/${order.order_id}`} style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "black" }}>
+            <li key={order.orderId} className={styles.orderListItem}>
+              <Link to={`/orders/${order.orderId}`} style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "black" }}>
                 <img
                   src='../../public/IMG_9793.jpeg'
-                  alt={`Order ${order.order_id}`}
+                  alt={`Order ${order.orderId}`}
                   className={styles.orderImage}
                 />
                 <div className={styles.orderDetails}>
-                  <div className={styles.orderId}>Order #{order.order_id}</div>
-                  <div className={styles.orderCustomerName}>{order.customer_name}</div>
+                  <div className={styles.orderId}>Order #{order.orderId}</div>
+                  <div className={styles.orderCustomerName}>{order.customerName}</div>
                   <div className={styles.orderStatus}>{order.status}</div>
                 </div>
               </Link>

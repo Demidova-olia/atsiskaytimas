@@ -1,7 +1,7 @@
 {
   "designers": [
     {
-      "designer_id": "1",
+      "id": "1",
       "name": "Anna Sui",
       "bio": "Anna Sui is an American fashion designer known for her eclectic and feminine designs.",
       "country": "USA",
@@ -13,7 +13,7 @@
       "image": "https://th.bing.com/th/id/R.8c1ad5bb3f0b9829a2e5606d9488f66c?rik=rPhdPEcCq4Dhwg&pid=ImgRaw&r=0"
     },
     {
-      "designer_id": "2",
+      "id": "2",
       "name": "Virgil Abloh",
       "bio": "Virgil Abloh was an American designer known for his work at Louis Vuitton and Off-White.",
       "country": "USA",
@@ -23,103 +23,165 @@
         "website": "https://www.off---white.com"
       },
       "image": "https://th.bing.com/th/id/R.32bfdc7128f12686b4c9d1233eadceba?rik=k0PR%2fHmxo3HScA&pid=ImgRaw&r=0"
+    },
+    {
+      "id": "8747",
+      "name": "sfsgsfg",
+      "bio": "fddsgsfga",
+      "country": "dfhsdinfehi",
+      "contact": {
+        "email": "erere@sdfsdf.cdaf",
+        "phone": "+69645862",
+        "website": "https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
+      },
+      "image": "https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
     }
   ],
   "collections": [
     {
-      "collection_id": "1",
-      "designer_id": "1",
+      "collectionId": "1",
+      "designerId": "1",
       "name": "Spring 2025 Collection",
       "season": "Spring",
       "year": 2025
     },
     {
-      "collection_id": "2",
-      "designer_id": "1",
+      "collectionId": "2",
+      "designerId": "1",
       "name": "Summer 2025 Collection",
       "season": "Summer",
       "year": 2025
     },
     {
-      "collection_id": "3",
-      "designer_id": "2",
+      "collectionId": "3",
+      "designerId": "2",
       "name": "Off-White Fall/Winter 2025",
       "season": "Fall/Winter",
       "year": 2025
+    },
+    {
+      "id": "c1ee",
+      "collectionId": "1741904050949",
+      "name": "fherhewh",
+      "season": "sdysryser",
+      "year": 1990,
+      "designerId": "8747"
+    },
+    {
+      "id": "b3f4",
+      "collectionId": "1741904845615",
+      "name": "dyhvhvt",
+      "season": "sgsrsy",
+      "year": 1963,
+      "designerId": null
+    },
+    {
+      "id": "f81a",
+      "collectionId": "1741905264673",
+      "name": "fgsrer",
+      "season": "werew",
+      "year": 1569,
+      "designerId": "8747"
+    },
+    {
+      "id": "133f",
+      "collectionId": "1741905414181",
+      "name": "rtwetQ",
+      "season": "E",
+      "year": 1598,
+      "designerId": null
     }
   ],
   "items": [
     {
-      "item_id": "1",
-      "collection_id": "1",
+      "itemId": "1",
+      "collectionId": "1",
       "name": "Floral Dress",
       "type": "Dress",
       "material": "Silk",
       "price": 500,
       "currency": "USD",
       "color": "Red",
-      "sizes_available": ["S", "M", "L"],
+      "sizes_available": [
+        "S",
+        "M",
+        "L"
+      ],
       "description": "A beautiful floral dress perfect for spring events.",
       "image": "https://th.bing.com/th/id/R.0e21ccea8ffb3b2e292a6ad4435a9f86?rik=LNqS19UP2RRW3A&pid=ImgRaw&r=0"
     },
     {
-      "item_id": "2",
-      "collection_id": "1",
+      "itemId": "2",
+      "collectionId": "1",
       "name": "Striped Blouse",
       "type": "Blouse",
       "material": "Cotton",
       "price": 120,
       "currency": "USD",
       "color": "Blue",
-      "sizes_available": ["S", "M"],
+      "sizes_available": [
+        "S",
+        "M"
+      ],
       "description": "A stylish striped blouse ideal for casual outings.",
       "image": "https://i.pinimg.com/736x/dd/9f/38/dd9f380ae28269fc17dd9a33511cc36b.jpg"
     },
     {
-      "item_id": "3",
-      "collection_id": "2",
+      "itemId": "3",
+      "collectionId": "2",
       "name": "Summer Shorts",
       "type": "Shorts",
       "material": "Denim",
       "price": 75,
       "currency": "USD",
       "color": "Light Blue",
-      "sizes_available": ["M", "L"],
+      "sizes_available": [
+        "M",
+        "L"
+      ],
       "description": "Comfortable denim shorts for hot summer days.",
       "image": "https://handcmediastorage.blob.core.windows.net/productimages/SR/SRPZZ002-B40-170867-1400px-1820px.jpg"
     },
     {
-      "item_id": "4",
-      "collection_id": "3",
+      "itemId": "4",
+      "collectionId": "3",
       "name": "Signature Off-White Hoodie",
       "type": "Hoodie",
       "material": "Cotton/Polyester Blend",
       "price": 300,
       "currency": "USD",
       "color": "Black",
-      "sizes_available": ["M", "L", "XL"],
+      "sizes_available": [
+        "M",
+        "L",
+        "XL"
+      ],
       "description": "A limited edition hoodie with the Off-White logo.",
       "image": "https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/43/P00426238.jpg"
     },
     {
-      "item_id": "5",
-      "collection_id": "3",
+      "itemId": "5",
+      "collectionId": "3",
       "name": "Off-White Sneakers",
       "type": "Sneakers",
       "material": "Leather",
       "price": 800,
       "currency": "USD",
       "color": "White/Black",
-      "sizes_available": ["40", "42", "44"],
+      "sizes_available": [
+        "40",
+        "42",
+        "44"
+      ],
       "description": "Trendy sneakers with the signature Off-White design.",
       "image": "https://th.bing.com/th/id/OIP.N2Lpe-xIDD4j46ypsx3UCAAAAA?rs=1&pid=ImgDetMain"
     }
   ],
   "orders": [
     {
-      "order_id": "1",
+      "orderId": "1",
       "customer_name": "John Doe",
-      "item_id": "1",
+      "itemId": "1",
       "quantity": 2,
       "total_price": 1000,
       "currency": "USD",
@@ -128,9 +190,9 @@
       "shipping_address": "123 Main Street, New York, NY, 10001"
     },
     {
-      "order_id": "2",
+      "orderId": "2",
       "customer_name": "Jane Smith",
-      "item_id": "1",
+      "itemId": "1",
       "quantity": 1,
       "total_price": 500,
       "currency": "USD",
@@ -139,9 +201,9 @@
       "shipping_address": "456 Elm Street, Los Angeles, CA, 90001"
     },
     {
-      "order_id": "3",
+      "orderId": "3",
       "customer_name": "Tom Hanks",
-      "item_id": "2",
+      "itemId": "2",
       "quantity": 1,
       "total_price": 120,
       "currency": "USD",
@@ -150,9 +212,9 @@
       "shipping_address": "789 Oak Avenue, Chicago, IL, 60601"
     },
     {
-      "order_id": "4",
+      "orderId": "4",
       "customer_name": "Samantha Green",
-      "item_id": "3",
+      "itemId": "3",
       "quantity": 3,
       "total_price": 225,
       "currency": "USD",
@@ -161,9 +223,9 @@
       "shipping_address": "321 Pine Road, Miami, FL, 33101"
     },
     {
-      "order_id": "5",
+      "orderId": "5",
       "customer_name": "Mark Lee",
-      "item_id": "4",
+      "itemId": "4",
       "quantity": 1,
       "total_price": 300,
       "currency": "USD",
@@ -172,15 +234,27 @@
       "shipping_address": "654 Birch Boulevard, San Francisco, CA, 94101"
     },
     {
-      "order_id": "6",
+      "orderId": "6",
       "customer_name": "Anna Blue",
-      "item_id": "5",
+      "itemId": "5",
       "quantity": 1,
       "total_price": 800,
       "currency": "USD",
       "status": "In Progress",
       "order_date": "2025-03-09",
       "shipping_address": "987 Maple Street, Seattle, WA, 98101"
+    },
+    {
+      "id": "1c4f",
+      "orderId": "1741909332685",
+      "customerName": "fasfaf",
+      "itemId": "1",
+      "quantity": 1,
+      "totalPrice": 222,
+      "currency": "EUR",
+      "status": "Processing",
+      "orderDate": "2025-06-12",
+      "shippingAddress": "n/nk.m"
     }
   ]
 }

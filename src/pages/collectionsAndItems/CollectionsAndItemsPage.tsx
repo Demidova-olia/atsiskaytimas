@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router";
-
 import styles from './CollectionsAndItems.module.css';
 import { ApiContext } from "../../contexts/ApiContext";
 import { Collection, Item } from "../../components/types";
@@ -27,7 +26,7 @@ const CollectionsAndItemsPage: React.FC = () => {
     if (selectedCollectionId === collectionId) {
       setSelectedCollectionId(null);
     } else {
-      setSelectedCollectionId(collectionId); 
+      setSelectedCollectionId(collectionId);
     }
   };
 
@@ -37,19 +36,19 @@ const CollectionsAndItemsPage: React.FC = () => {
       {collections.length > 0 ? (
         <div>
           {collections.map((collection: Collection) => {
-            const collectionItems = items.filter((item: Item) => item.collection_id === collection.collection_id);
+            const collectionItems = items.filter((item: Item) => item.collectionId === collection.collectionId);
 
             return (
-              <div key={collection.collection_id}>
-                <button onClick={() => handleCollectionClick(collection.collection_id)}>
+              <div key={collection.collectionId} className={styles.collectionContainer}>
+                <button className={styles.collectionButton} onClick={() => handleCollectionClick(collection.collectionId)}>
                   <h2>{collection.name} ({collection.season} {collection.year})</h2>
                 </button>
 
-                {selectedCollectionId === collection.collection_id && collectionItems.length > 0 ? (
+                {selectedCollectionId === collection.collectionId && collectionItems.length > 0 ? (
                   <ul>
                     {collectionItems.map((item: Item) => (
-                      <li key={item.item_id} className={styles.item}>
-                        <Link to={`/items/${item.item_id}`}>
+                      <li key={item.itemId} className={styles.item}>
+                        <Link to={`/items/${item.itemId}`}>
                           <img
                             src={item.image}
                             alt={item.name}
@@ -60,9 +59,16 @@ const CollectionsAndItemsPage: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                ) : selectedCollectionId === collection.collection_id && collectionItems.length === 0 ? (
-                  <p>No items found in this collection.</p>
+                ) : selectedCollectionId === collection.collectionId && collectionItems.length === 0 ? (
+                  <div>
+                    <p>No items found in this collection.</p>
+                  </div>
                 ) : null}
+                {selectedCollectionId === collection.collectionId && (
+                  <Link to={`/add-item/${collection.collectionId}`} className={styles.addItemLink}>
+                    Add Item
+                  </Link>
+                )}
               </div>
             );
           })}
@@ -75,7 +81,3 @@ const CollectionsAndItemsPage: React.FC = () => {
 };
 
 export default CollectionsAndItemsPage;
-
-
-
-

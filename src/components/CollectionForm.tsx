@@ -1,104 +1,94 @@
-import axios from "axios";
-import { API_URL } from "../../config";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { Collection } from "./types";
+import React, { useState, useContext } from 'react';
+import { ApiContext } from '../contexts/ApiContext';
+import { useNavigate } from 'react-router';
+import axios from 'axios'; 
+import { Collection, Designer } from './types';
+import { API_URL } from '../../config'; 
 
-const CollectionForm = ({ editCollectionData }: { editCollectionData?: Collection }) => {
+const CollectionForm: React.FC = () => {
+  const [name, setName] = useState('');
+  const [season, setSeason] = useState('');
+  const [year, setYear] = useState('');
+  const [designerId, setDesignerId] = useState('');
+
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
-  const [collection, setCollection] = useState<Collection>({
-    collection_id: "",
-    designer_id: "",
-    name: "",
-    season: "",
-    year: new Date().getFullYear(),
-    items: [],
-  });
 
-  useEffect(() => {
-    if (editCollectionData) {
-      setCollection(editCollectionData);
-    }
-  }, [editCollectionData]);
+  const context = useContext(ApiContext);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setCollection((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  if (!context) {
+    return <div>Error: ApiContext not found!</div>;
+  }
 
-  const handleItemsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const itemNames = e.target.value.split(",").map((itemName) => itemName.trim());
+  const { designers, addCollection } = context; 
 
-    setCollection((prev) => ({
-      ...prev,
-      items: itemNames.map((itemName, index) => ({
-        item_id: `item-${index}-${Math.random()}`,
-        collection_id: prev.collection_id,
-        name: itemName,
-        type: "", 
-        material: "", 
-        price: 0, 
-        currency: "", 
-        color: "", 
-        sizes_available: [], 
-        description: "", 
-        orders: [], 
-        image: "", 
-      })),
-    }));
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!collection.name || !collection.designer_id) {
-      setError("Collection name and designer are required");
-      return;
-    }
+    const newCollection: Collection = {
+      collectionId: Date.now().toString(),
+      name,
+      season,
+      year: parseInt(year),
+      designerId,
+    };
 
     try {
-      if (editCollectionData) {
-        const { data } = await axios.put(`${API_URL}/collections/${collection.collection_id}`, collection);
-        navigate(`/collections/${data.collection_id}`);
-      } else {
-        const { data } = await axios.post(`${API_URL}/collections`, collection);
-        navigate(`/collections/${data.collection_id}`);
-      }
+      const response = await axios.post(`${API_URL}/collections`, newCollection); // Замените URL на ваш реальный
+      console.log('Collection added:', response.data);
+
+      addCollection(newCollection);
+
+      navigate(`/collections/${newCollection.collectionId}`);
+
+      setName('');
+      setSeason('');
+      setYear('');
+      setDesignerId('');
     } catch (error) {
-      setError("An error occurred while saving the collection.");
-      console.log(error);
+      console.error('Error adding collection:', error);
     }
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Season"
+        value={season}
+        onChange={(e) => setSeason(e.target.value)}
+        required
+      />
+      <input
+        type="number"
+        placeholder="Year"
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+        required
+      />
 
-      <div className="form-control">
-        <label htmlFor="name">Collection Name:</label>
-        <input type="text" name="name" id="name" value={collection.name} onChange={handleChange} />
-      </div>
+      <select
+        value={designerId}
+        onChange={(e) => setDesignerId(e.target.value)}
+        required
+      >
+        <option value="" disabled>
+          Select Designer
+        </option>
+        {designers.map((designer: Designer) => (
+          <option key={designer.id} value={designer.id}>
+            {designer.name}
+          </option>
+        ))}
+      </select>
 
-      <div className="form-control">
-        <label htmlFor="season">Season:</label>
-        <input type="text" name="season" id="season" value={collection.season} onChange={handleChange} />
-      </div>
-
-      <div className="form-control">
-        <label htmlFor="year">Year:</label>
-        <input type="number" name="year" id="year" value={collection.year} onChange={handleChange} />
-      </div>
-
-      <div className="form-control">
-        <label htmlFor="items">Items (comma separated):</label>
-        <input type="text" name="items" id="items" value={collection.items.map((item) => item.name).join(", ")} onChange={handleItemsChange} />
-      </div>
-
-      <button type="submit">{editCollectionData ? "Edit Collection" : "Create Collection"}</button>
+      <button type="submit">Add Collection</button>
     </form>
   );
 };

@@ -1,107 +1,93 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router";
-import { ApiContext } from "../../contexts/ApiContext";
-import { Designer, Collection, Item } from "../../components/types";
+import { useEffect, useState, useContext } from "react";
+import { useParams, Link, useNavigate } from "react-router";
+import styles from './DesignerPage.module.css';
 import axios from "axios";
+import { Designer } from "../../components/types";
+import { ApiContext } from "../../contexts/ApiContext";
 import { API_URL } from "../../../config";
-import styles from "./DesignerPage.module.css";
 
 const DesignerPage: React.FC = () => {
-  const { designerId } = useParams<{ designerId: string }>();
-  const { designers, collections, items, loading, error } = useContext(ApiContext) || {}; // Context data
-  const [designer, setDesigner] = useState<Designer | null>(null);
-  const [designerCollections, setDesignerCollections] = useState<Collection[]>([]);
-  const [designerItems, setDesignerItems] = useState<Item[]>([]);
-  const navigate = useNavigate();
+    const { designerId } = useParams<{ designerId: string }>();
+    const [designer, setDesigner] = useState<Designer | null>(null);
+    const navigate = useNavigate();
+    const { designers, collections, loading, error } = useContext(ApiContext) || {};
 
-  useEffect(() => {
-    if (designerId && designers && collections && items) {
-      const foundDesigner = designers.find(d => d.designer_id === designerId);
-      if (foundDesigner) {
-        setDesigner(foundDesigner);
+    useEffect(() => {
+        if (!designers || !collections) return;
 
-        // Filter related collections by designer_id
-        const relatedCollections = collections.filter(collection =>
-          collection.designer_id === foundDesigner.designer_id
-        );
-        setDesignerCollections(relatedCollections);
+        const selectedDesigner = designers.find((designer: Designer) => designer.id === designerId);
+        if (selectedDesigner) {
+            setDesigner(selectedDesigner);
+        }
+    }, [designerId, designers, collections]);
 
-        // Filter items related to the found collections
-        const relatedItems = items.filter(item =>
-          relatedCollections.some(collection => collection.collection_id === item.collection_id)
-        );
-        setDesignerItems(relatedItems);
-      }
+    if (loading) {
+        return <p>Loading...</p>;
     }
-  }, [designerId, designers, collections, items]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-
-  if (!designer) {
-    return <p>Designer not found</p>;
-  }
-
-  const { name, bio, image } = designer;
-
-  const deleteHandler = async () => {
-    try {
-      await axios.delete(`${API_URL}/designers/${designerId}`);
-      navigate("/designers");
-    } catch (error) {
-      console.error("Error deleting designer:", error);
-      alert("Failed to delete the designer");
+    if (error) {
+        return <p>{error}</p>;
     }
-  };
 
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.heading}>Designer: {name}</h1>
-      <div className={styles.designerInfo}>
-        <img className={styles.image} src={image} alt={name} />
-        <p className={styles.bio}>{bio}</p>
-      </div>
-      <div className={styles.controls}>
-        <button className={styles.delete} onClick={deleteHandler}>Delete</button>
-        <Link className={styles.editLink} to={`/designers/edit/${designerId}`}>Edit</Link>
-      </div>
+    if (!designer) {
+        return <p>Designer not found.</p>;
+    }
 
-      <h3 className={styles.collectionsHeading}>Collections:</h3>
-      {designerCollections.length > 0 ? (
-        <ul className={styles.collectionsList}>
-          {designerCollections.map((collection) => (
-            <li key={collection.collection_id} className={styles.collectionItem}>
-              <Link className={styles.link} to={`/collections/${collection.collection_id}`}>
-                {collection.name} ({collection.season} {collection.year})
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No collections available</p>
-      )}
+    const designerCollections = collections!.filter((collection) => collection.designerId === designerId);
 
-      <h3 className={styles.itemsHeading}>Items:</h3>
-      {designerItems.length > 0 ? (
-        <ul className={styles.itemsList}>
-          {designerItems.map((item) => (
-            <li key={item.item_id} className={styles.item}>
-              <Link className={styles.link} to={`/items/${item.item_id}`}>
-                <img src={item.image} alt={item.name} className={styles.itemImage} />
-                <div className={styles.itemDetails}>
-                  <h4>{item.name}</h4>
-                  <p>{item.material}</p>
-                  <p>{item.price} {item.currency}</p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No items available</p>
-      )}
-    </div>
-  );
+    const deleteHandler = async () => {
+        try {
+            await axios.delete(`${API_URL}/designers/${designer.id}`);
+            navigate("/designers");
+        } catch (error) {
+            console.error("Error deleting designer:", error);
+            alert("Failed to delete the designer");
+        }
+    };
+
+    return (
+        <div className={styles.pageContainer}>
+            <h1>Designer: {designer.name}</h1>
+            <div className={styles.designerInfo}>
+                <img src={designer.image} alt={designer.name} className={styles.designerImage} />
+                <p><strong>Bio:</strong> {designer.bio}</p>
+                <p><strong>Country:</strong> {designer.country}</p>
+                <p><strong>Contact:</strong></p>
+                <ul>
+                    <li>Email: <a href={`mailto:${designer.contact.email}`}>{designer.contact.email}</a></li>
+                    <li>Phone: <a href={`tel:${designer.contact.phone}`}>{designer.contact.phone}</a></li>
+                    <li>Website: <a href={designer.contact.website} target="_blank" rel="noopener noreferrer">{designer.contact.website}</a></li>
+                </ul>
+                
+            </div>
+
+            <div className={styles.collections}>
+                <h2>Collections:</h2>
+                {designerCollections.length > 0 ? (
+                    <ul>
+                        {designerCollections.map((collection) => (
+                            <li key={collection.collectionId}>
+                                <Link to={`/collections/${collection.collectionId}`} className={styles.collectionLink}>
+                                    {collection.name} ({collection.season} {collection.year})
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No collections available.</p>
+                )}
+            </div>
+
+            <div className={styles.controls}>
+                <button className={styles.delete} onClick={deleteHandler}>
+                    Delete Designer
+                </button>
+                <Link className={styles.editLink} to={`/designers/edit/${designerId}`}>
+                    Edit Designer
+                </Link>
+            </div>
+        </div>
+    );
 };
 
 export default DesignerPage;

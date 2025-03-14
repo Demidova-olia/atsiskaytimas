@@ -5,7 +5,7 @@ export interface Contact {
 }
 
 export interface Designer {
-  designer_id: string;
+  id: string;
   name: string;
   bio: string;
   country: string;
@@ -15,8 +15,8 @@ export interface Designer {
 }
 
 export interface Collection {
-  collection_id: string;
-  designer_id: string;
+  collectionId: string;
+  designerId: string;
   name: string;
   season: string;
   year: number;
@@ -24,8 +24,8 @@ export interface Collection {
 }
 
 export interface Item {
-  item_id: string;
-  collection_id: string;
+  itemId: string;
+  collectionId: string;
   name: string;
   type: string;
   material: string;
@@ -38,15 +38,15 @@ export interface Item {
 }
 
 export interface Order {
-  order_id: string;
-  customer_name: string;
-  item_id: string;
-  quantity: number;
-  total_price: number;
-  currency: string;
-  status: string;
-  order_date: string;
-  shipping_address: string;
+  orderId: string;          
+  customerName: string;     
+  itemId: string;           // Идентификатор элемента
+  quantity: number;         
+  totalPrice: number;       
+  currency: string;         
+  status: string;           
+  orderDate: string;        
+  shippingAddress: string;  
 }
 
 export interface Data {

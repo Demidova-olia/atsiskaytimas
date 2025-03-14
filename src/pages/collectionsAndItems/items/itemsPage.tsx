@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { useParams, Link } from "react-router";  // Correct import for React Router
-import { ApiContext } from "../../contexts/ApiContext";
-import { Item } from "../../components/types";
-import styles from './ItemsPage.module.css';  // Import the CSS module
+import { useParams, Link } from "react-router";
+
+import styles from './ItemsPage.module.css';
+import { ApiContext } from "../../../contexts/ApiContext";
+import { Item } from "../../../components/types";
 
 const ItemsPage: React.FC = () => {
   const { collectionId } = useParams<{ collectionId: string }>();
@@ -22,7 +23,7 @@ const ItemsPage: React.FC = () => {
     return <p>Error: {error}</p>;
   }
 
-  const filteredItems = items.filter(item => item.collection_id === String(collectionId));
+  const filteredItems = items.filter(item => item.collectionId === String(collectionId));
 
   return (
     <div className={styles.pageContainer}>
@@ -31,8 +32,8 @@ const ItemsPage: React.FC = () => {
       {filteredItems.length > 0 ? (
         <ul className={styles.itemsList}>
           {filteredItems.map((item: Item) => (
-            <li key={item.item_id} className={styles.itemListItem}>
-              <Link to={`/items/${item.item_id}`}>
+            <li key={item.itemId} className={styles.itemListItem}>
+              <Link to={`/items/${item.itemId}`}>
                 <img 
                   src={item.image} 
                   alt={item.name} 
