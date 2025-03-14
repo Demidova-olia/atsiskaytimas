@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Params, useParams } from "react-router";
+import { Params, useParams, useNavigate } from "react-router";
 import { API_URL } from "../../../config";
 import { Designer } from "../../components/types";
 import DesignerForm from "../../components/DesignerForm";
-
 
 const EditDesigner: React.FC = () => {
   const { id } = useParams<Params>();
   const [designer, setDesigner] = useState<Designer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDesignerData = async () => {
@@ -38,11 +38,17 @@ const EditDesigner: React.FC = () => {
   }
 
   return (
-    <div className={id}>
+    <div className="edit-designer">
       <h1>Edit Designer</h1>
-      {designer ? <DesignerForm editDesignerData={designer} /> : <p>No designer data available.</p>}
+      {designer ? (
+        <DesignerForm initialValues={designer} onSave={() => navigate(`/designers/${id}`)} />
+      ) : (
+        <p>No designer data available.</p>
+      )}
     </div>
   );
 };
 
 export default EditDesigner;
+
+

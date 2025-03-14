@@ -1,50 +1,64 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { API_URL } from '../../config';
-import { useNavigate } from 'react-router';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Designer } from "../components/types"; 
+import { API_URL } from "../../config";
 
-const DesignerForm: React.FC = () => {
-  const [name, setName] = useState('');
-  const [bio, setBio] = useState('');
-  const [country, setCountry] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [website, setWebsite] = useState('');
-  const [image, setImage] = useState('');
-  const navigate = useNavigate();
+interface DesignerFormProps {
+  initialValues: Designer | null;
+  onSave: () => void;
+}
+
+const DesignerForm: React.FC<DesignerFormProps> = ({ initialValues, onSave }) => {
+  const [name, setName] = useState(initialValues?.name || "");
+  const [bio, setBio] = useState(initialValues?.bio || "");
+  const [country, setCountry] = useState(initialValues?.country || "");
+  const [email, setEmail] = useState(initialValues?.contact.email || "");
+  const [phone, setPhone] = useState(initialValues?.contact.phone || "");
+  const [website, setWebsite] = useState(initialValues?.contact.website || "");
+  const [image, setImage] = useState(initialValues?.image || "");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newDesigner = {
-      id: Date.now().toString(),
+    const updatedDesigner: Designer = {
+      id: initialValues?.id || "", 
       name,
       bio,
       country,
       contact: {
         email,
         phone,
-        website
+        website,
       },
-      image
+      image,
     };
 
     try {
-      const response = await axios.post(`${API_URL}/designers`, newDesigner);
-      console.log('Designer added:', response.data);
-      navigate(`/designers/${newDesigner.id}`);
-      
-      setName('');
-      setBio('');
-      setCountry('');
-      setEmail('');
-      setPhone('');
-      setWebsite('');
-      setImage('');
+      if (initialValues?.id) {
+       
+        await axios.put(`${API_URL}/designers/${initialValues.id}`, updatedDesigner);
+      } else {
+       
+        await axios.post(`${API_URL}/designers`, updatedDesigner);
+      }
+      onSave();
     } catch (error) {
-      console.error('Error adding designer:', error);
+      console.error("Failed to update or create designer:", error);
+      alert("Failed to save designer");
     }
   };
+
+  useEffect(() => {
+    if (initialValues) {
+      setName(initialValues.name);
+      setBio(initialValues.bio);
+      setCountry(initialValues.country);
+      setEmail(initialValues.contact.email);
+      setPhone(initialValues.contact.phone);
+      setWebsite(initialValues.contact.website);
+      setImage(initialValues.image);
+    }
+  }, [initialValues]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -96,9 +110,11 @@ const DesignerForm: React.FC = () => {
         onChange={(e) => setImage(e.target.value)}
         required
       />
-      <button type="submit">Add Designer</button>
+      <button type="submit">{initialValues?.id ? "Edit Designer" : "Add Designer"}</button>
     </form>
   );
 };
 
 export default DesignerForm;
+
+

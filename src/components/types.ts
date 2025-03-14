@@ -11,7 +11,7 @@ export interface Designer {
   country: string;
   contact: Contact;
   image: string;
-  collections?: Collection[];
+  collections?: Collection[]; 
 }
 
 export interface Collection {
@@ -20,7 +20,7 @@ export interface Collection {
   name: string;
   season: string;
   year: number;
-  items?: Item[]
+  items?: Item[];
 }
 
 export interface Item {
@@ -32,21 +32,21 @@ export interface Item {
   price: number;
   currency: string;
   color: string;
-  sizes_available: string[];
+
   description: string;
   image: string;
 }
 
 export interface Order {
-  orderId: string;          
-  customerName: string;     
-  itemId: string;           // Идентификатор элемента
-  quantity: number;         
-  totalPrice: number;       
-  currency: string;         
-  status: string;           
-  orderDate: string;        
-  shippingAddress: string;  
+  orderId: string;
+  customerName: string;
+  itemId: string; 
+  quantity: number;
+  totalPrice: number;
+  currency: string;
+  status: string;
+  orderDate: string;
+  shippingAddress: string;
 }
 
 export interface Data {
@@ -57,13 +57,13 @@ export interface Data {
 }
 
 export type ItemFormProps = {
-  editItemData?: Partial<Item> | null;
+  editItemData?: Partial<Item> | null; 
 };
 
 export type DesignerFormProps = {
-  editDesignerData?: Partial<Designer> | null;
+  editDesignerData?: Partial<Designer> | null; 
 };
 
 export type OrderFormProps = {
-  editOrderData?: Partial<Order> | null;
+  editOrderData?: Partial<Order> | null;  
 };

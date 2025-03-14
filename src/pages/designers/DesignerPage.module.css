@@ -1,91 +1,109 @@
 .pageContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    color: #d8d2d2;
-    margin-bottom: 20px;
-  }
-  
-  .designerInfo {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .designerInfo p {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .designerInfo ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .designerInfo li {
-    margin-bottom: 8px;
-  }
-  
-  .designerInfo a {
-    text-decoration: none;
-    color: #0066cc;
-  }
-  
-  .designerInfo a:hover {
-    text-decoration: underline;
-  }
-  
-  .designerImage {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 20px;
-  }
-  
-  .controls {
-    margin-top: 30px;
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-  }
-  
-  .controls button,
-  .controls .edit-link {
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
-  .controls button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .controls button:hover {
-    background-color: #c0392b;
-  }
-  
-  .controls .edit-link {
-    background-color: #3498db;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .controls .edit-link:hover {
-    background-color: #2980b9;
-  }
-  
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.designerInfo {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.designerInfo img {
+  max-width: 200px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.designerInfo p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.designerInfo ul {
+  padding-left: 20px;
+}
+
+.designerInfo li {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.collections {
+  margin-top: 30px;
+}
+
+.collections h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.collections ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.collections li {
+  margin-bottom: 10px;
+}
+
+.collectionLink {
+  text-decoration: none;
+  color: #2980b9;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.collectionLink:hover {
+  color: #3498db;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.delete {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 110px;
+}
+
+.delete:hover {
+  background-color: #c0392b;
+}
+
+.editLink {
+  font-size: 1rem;
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.editLink:hover {
+  color: #3498db;
+}

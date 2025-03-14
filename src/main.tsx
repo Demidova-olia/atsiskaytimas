@@ -2,7 +2,7 @@ import './index.css';
 import App from './App.tsx';
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Route, Routes } from 'react-router'; 
 import OrdersPage from './pages/orders/OrdersPage.tsx';
 import DesignersPage from './pages/designers/DesignersPage.tsx';
 import CollectionsAndItemsPage from './pages/collectionsAndItems/CollectionsAndItemsPage.tsx';
@@ -19,13 +19,13 @@ import AddItem from './pages/collectionsAndItems/items/AddItem.tsx';
 import ItemsPage from './pages/collectionsAndItems/items/itemsPage.tsx';
 import AddCollection from './pages/collectionsAndItems/collections/AddCollection.tsx';
 
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <ApiProvider>
         <Routes>
           <Route path="/" element={<App />} />
+
           <Route path="orders">
             <Route index element={<OrdersPage />} />
             <Route path=":orderId" element={<OrderPage />} />
@@ -51,14 +51,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="items">
             <Route index element={<ItemsPage />} />
             <Route path=":itemId" element={<ItemPage />} />
-            <Route path="create" element={<AddItem />} />
+            <Route path="create/:collectionId" element={<AddItem />} />
           </Route>
-          {/* <Route path=":collectionId/items">
-            <Route index element={<ItemsPage />} /> */}
-            {/* <Route path=":itemId" element={<ItemsPage />} />
-            <Route path="create" element={<CreateItem />} />
-            <Route path="edit/:id" element={<EditItem />} /> */}
-          {/* </Route> */}
 
         </Routes>
       </ApiProvider>

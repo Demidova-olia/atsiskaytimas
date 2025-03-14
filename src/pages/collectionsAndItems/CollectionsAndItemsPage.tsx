@@ -8,6 +8,7 @@ const CollectionsAndItemsPage: React.FC = () => {
   const apiContext = useContext(ApiContext);
   const [selectedCollectionId, setSelectedCollectionId] = useState<string | null>(null);
 
+
   if (!apiContext) {
     return <p>Loading context...</p>;
   }
@@ -49,11 +50,7 @@ const CollectionsAndItemsPage: React.FC = () => {
                     {collectionItems.map((item: Item) => (
                       <li key={item.itemId} className={styles.item}>
                         <Link to={`/items/${item.itemId}`}>
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className={styles.itemImage}
-                          />
+                          <img src={item.image} alt={item.name} className={styles.itemImage} />
                           <p>{item.name}</p>
                         </Link>
                       </li>
@@ -64,8 +61,9 @@ const CollectionsAndItemsPage: React.FC = () => {
                     <p>No items found in this collection.</p>
                   </div>
                 ) : null}
+
                 {selectedCollectionId === collection.collectionId && (
-                  <Link to={`/add-item/${collection.collectionId}`} className={styles.addItemLink}>
+                  <Link to={`/items/create/${collection.collectionId}`} className={styles.addItemLink}>
                     Add Item
                   </Link>
                 )}
@@ -81,3 +79,4 @@ const CollectionsAndItemsPage: React.FC = () => {
 };
 
 export default CollectionsAndItemsPage;
+

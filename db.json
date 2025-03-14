@@ -60,36 +60,32 @@
       "year": 2025
     },
     {
-      "id": "c1ee",
-      "collectionId": "1741904050949",
+      "collectionId": "c1ee",
+      "designerId": "8747",
       "name": "fherhewh",
       "season": "sdysryser",
-      "year": 1990,
-      "designerId": "8747"
+      "year": 1990
     },
     {
-      "id": "b3f4",
-      "collectionId": "1741904845615",
+      "collectionId": "b3f4",
+      "designerId": null,
       "name": "dyhvhvt",
       "season": "sgsrsy",
-      "year": 1963,
-      "designerId": null
+      "year": 1963
     },
     {
-      "id": "f81a",
-      "collectionId": "1741905264673",
+      "collectionId": "f81a",
+      "designerId": "8747",
       "name": "fgsrer",
       "season": "werew",
-      "year": 1569,
-      "designerId": "8747"
+      "year": 1569
     },
     {
-      "id": "133f",
-      "collectionId": "1741905414181",
+      "collectionId": "133f",
+      "designerId": null,
       "name": "rtwetQ",
       "season": "E",
-      "year": 1598,
-      "designerId": null
+      "year": 1598
     }
   ],
   "items": [
@@ -102,11 +98,6 @@
       "price": 500,
       "currency": "USD",
       "color": "Red",
-      "sizes_available": [
-        "S",
-        "M",
-        "L"
-      ],
       "description": "A beautiful floral dress perfect for spring events.",
       "image": "https://th.bing.com/th/id/R.0e21ccea8ffb3b2e292a6ad4435a9f86?rik=LNqS19UP2RRW3A&pid=ImgRaw&r=0"
     },
@@ -119,10 +110,6 @@
       "price": 120,
       "currency": "USD",
       "color": "Blue",
-      "sizes_available": [
-        "S",
-        "M"
-      ],
       "description": "A stylish striped blouse ideal for casual outings.",
       "image": "https://i.pinimg.com/736x/dd/9f/38/dd9f380ae28269fc17dd9a33511cc36b.jpg"
     },
@@ -135,10 +122,6 @@
       "price": 75,
       "currency": "USD",
       "color": "Light Blue",
-      "sizes_available": [
-        "M",
-        "L"
-      ],
       "description": "Comfortable denim shorts for hot summer days.",
       "image": "https://handcmediastorage.blob.core.windows.net/productimages/SR/SRPZZ002-B40-170867-1400px-1820px.jpg"
     },
@@ -151,11 +134,6 @@
       "price": 300,
       "currency": "USD",
       "color": "Black",
-      "sizes_available": [
-        "M",
-        "L",
-        "XL"
-      ],
       "description": "A limited edition hoodie with the Off-White logo.",
       "image": "https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/43/P00426238.jpg"
     },
@@ -168,85 +146,97 @@
       "price": 800,
       "currency": "USD",
       "color": "White/Black",
-      "sizes_available": [
-        "40",
-        "42",
-        "44"
-      ],
       "description": "Trendy sneakers with the signature Off-White design.",
       "image": "https://th.bing.com/th/id/OIP.N2Lpe-xIDD4j46ypsx3UCAAAAA?rs=1&pid=ImgDetMain"
+    },
+    {
+      "itemId": "6294",
+      "collectionId": "2",
+      "name": "nhfbyy",
+      "material": "ngkghj",
+      "price": 200,
+      "currency": "USD",
+      "image": "https://m.media-amazon.com/images/I/71n-G9ndREL._AC_UY1000_.jpg"
+    },
+    {
+      "itemId": "1741935144656",
+      "collectionId": "2",
+      "name": "jbfyggh",
+      "material": "hbgjyg",
+      "price": 800,
+      "currency": "USD",
+      "image": "https://ajeworld.co.nz/cdn/shop/files/25SU5469_COL-FRL_1.jpg?v=1737641120"
     }
   ],
   "orders": [
     {
       "orderId": "1",
-      "customer_name": "John Doe",
+      "customerName": "John Doe",
       "itemId": "1",
       "quantity": 2,
-      "total_price": 1000,
+      "totalPrice": 1000,
       "currency": "USD",
       "status": "Shipped",
-      "order_date": "2025-03-01",
-      "shipping_address": "123 Main Street, New York, NY, 10001"
+      "orderDate": "2025-03-01",
+      "shippingAddress": "123 Main Street, New York, NY, 10001"
     },
     {
       "orderId": "2",
-      "customer_name": "Jane Smith",
+      "customerName": "Jane Smith",
       "itemId": "1",
       "quantity": 1,
-      "total_price": 500,
+      "totalPrice": 500,
       "currency": "USD",
       "status": "Delivered",
-      "order_date": "2025-03-05",
-      "shipping_address": "456 Elm Street, Los Angeles, CA, 90001"
+      "orderDate": "2025-03-05",
+      "shippingAddress": "456 Elm Street, Los Angeles, CA, 90001"
     },
     {
       "orderId": "3",
-      "customer_name": "Tom Hanks",
+      "customerName": "Tom Hanks",
       "itemId": "2",
       "quantity": 1,
-      "total_price": 120,
+      "totalPrice": 120,
       "currency": "USD",
       "status": "In Progress",
-      "order_date": "2025-03-03",
-      "shipping_address": "789 Oak Avenue, Chicago, IL, 60601"
+      "orderDate": "2025-03-03",
+      "shippingAddress": "789 Oak Avenue, Chicago, IL, 60601"
     },
     {
       "orderId": "4",
-      "customer_name": "Samantha Green",
+      "customerName": "Samantha Green",
       "itemId": "3",
       "quantity": 3,
-      "total_price": 225,
+      "totalPrice": 225,
       "currency": "USD",
       "status": "Shipped",
-      "order_date": "2025-03-06",
-      "shipping_address": "321 Pine Road, Miami, FL, 33101"
+      "orderDate": "2025-03-06",
+      "shippingAddress": "321 Pine Road, Miami, FL, 33101"
     },
     {
       "orderId": "5",
-      "customer_name": "Mark Lee",
+      "customerName": "Mark Lee",
       "itemId": "4",
       "quantity": 1,
-      "total_price": 300,
+      "totalPrice": 300,
       "currency": "USD",
       "status": "Shipped",
-      "order_date": "2025-03-07",
-      "shipping_address": "654 Birch Boulevard, San Francisco, CA, 94101"
+      "orderDate": "2025-03-07",
+      "shippingAddress": "654 Birch Boulevard, San Francisco, CA, 94101"
     },
     {
       "orderId": "6",
-      "customer_name": "Anna Blue",
+      "customerName": "Anna Blue",
       "itemId": "5",
       "quantity": 1,
-      "total_price": 800,
+      "totalPrice": 800,
       "currency": "USD",
       "status": "In Progress",
-      "order_date": "2025-03-09",
-      "shipping_address": "987 Maple Street, Seattle, WA, 98101"
+      "orderDate": "2025-03-09",
+      "shippingAddress": "987 Maple Street, Seattle, WA, 98101"
     },
     {
-      "id": "1c4f",
-      "orderId": "1741909332685",
+      "orderId": "1c4f",
       "customerName": "fasfaf",
       "itemId": "1",
       "quantity": 1,

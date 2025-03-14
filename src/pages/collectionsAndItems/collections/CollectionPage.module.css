@@ -1,48 +1,141 @@
 .pageContainer {
-    padding: 20px;
-  }
-  
-  .header {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .designerImage {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-bottom: 20px;
-  }
-  
-  .collections {
-    margin-top: 20px;
-  }
-  
-  .collectionLink {
-    text-decoration: none;
-    color: #007bff;
-  }
-  
-  .collectionLink:hover {
-    text-decoration: underline;
-  }
-  
-  /* CollectionPage.module.css */
-  .pageContainer {
-    padding: 20px;
-  }
-  
-  .header {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .itemLink {
-    text-decoration: none;
-    color: #007bff;
-  }
-  
-  .itemLink:hover {
-    text-decoration: underline;
-  }
-  
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #111010;
+  margin-bottom: 20px;
+}
+
+.collectionInfo {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.collectionInfo h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.collectionInfo p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.items {
+  margin-top: 30px;
+}
+
+.items h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.items ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.items li {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.items li:hover {
+  background-color: #f9f9f9;
+}
+
+.itemLink {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.itemImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.itemLink div {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemLink h4 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+}
+
+.itemLink p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.delete {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 110px;
+}
+
+.delete:hover {
+  background-color: #c0392b;
+}
+
+
+.editLink {
+  font-size: 1rem;
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.editLink:hover {
+  color: #3498db;
+}
+ 
+.designerLink {
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.designerLink:hover {
+  color: #3498db;
+}

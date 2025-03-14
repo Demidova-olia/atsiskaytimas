@@ -8,9 +8,25 @@ function App() {
     <div className="app-container">
     <h1>You want? Oreder!</h1>
     <div className="app-links">
-      <Link to="/orders">Orders</Link>
-      <Link to="/designers">Designers</Link>
-      <Link to="/collections">Collections</Link>
+      <div>
+        <Link to="/orders">
+          <img src="../public/orders (2).jpg" alt="" />
+          <h3>Orders</h3> 
+        </Link>
+      </div>
+      <div>
+        <Link to="/designers">
+          <img src="../public/designers.jpg" alt="" />
+          <h3>Designers</h3> 
+        </Link>
+      
+      </div>
+      <div>
+        <Link to="/collections">
+          <img src="../public/collections.jpg" alt="" />
+          <h3>Collections</h3>
+        </Link>
+      </div>
     </div>
   </div>
   </>

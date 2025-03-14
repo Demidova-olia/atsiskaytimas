@@ -82,8 +82,8 @@ const DesignerPage: React.FC = () => {
                 <button className={styles.delete} onClick={deleteHandler}>
                     Delete Designer
                 </button>
-                <Link className={styles.editLink} to={`/designers/edit/${designerId}`}>
-                    Edit Designer
+                <Link className={styles.editLink} to={`/designers/edit/${designer.id}`}>
+                    Edit Designer information
                 </Link>
             </div>
         </div>

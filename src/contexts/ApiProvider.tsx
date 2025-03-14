@@ -44,6 +44,9 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const addDesigner = (designer: Designer) => {
     dispatch({ type: 'ADD_DESIGNER', payload: designer });
   };
+  const updateDesigner = (designer: Designer) => {
+    dispatch({ type: 'UPDATE_DESIGNER', payload: designer });
+  }; 
 
   const addCollection = (collection: Collection) => {
     dispatch({ type: 'ADD_COLLECTION', payload: collection });
@@ -74,6 +77,7 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
         orders: state.orders,
         loading: state.loading,
         error: state.error,
+        updateDesigner,
         addDesigner,
         addCollection,
         addItem,
@@ -87,3 +91,4 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
     </ApiContext.Provider>
   );
 };
+

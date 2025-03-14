@@ -1,15 +1,15 @@
 import { Designer, Collection, Item, Order } from '../components/types';
 
-type Action =
+export type Action =
   | { type: 'ADD_DESIGNER'; payload: Designer }
   | { type: 'UPDATE_DESIGNER'; payload: Designer }
-  | { type: 'REMOVE_DESIGNER'; payload: string }  // payload: id дизайнера
+  | { type: 'REMOVE_DESIGNER'; payload: string } 
   | { type: 'ADD_COLLECTION'; payload: Collection }
   | { type: 'UPDATE_COLLECTION'; payload: Collection }
-  | { type: 'REMOVE_COLLECTION'; payload: string }  // payload: id коллекции
+  | { type: 'REMOVE_COLLECTION'; payload: string } 
   | { type: 'ADD_ITEM'; payload: Item }
   | { type: 'UPDATE_ITEM'; payload: Item }
-  | { type: 'REMOVE_ITEM'; payload: string }  // payload: id элемента
+  | { type: 'REMOVE_ITEM'; payload: string } 
   | { type: 'ADD_ORDER'; payload: Order }
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'SET_ERROR'; payload: string }
@@ -87,4 +87,3 @@ export const apiReducer = (state: State, action: Action): State => {
       return state;
   }
 };
-
