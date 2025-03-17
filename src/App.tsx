@@ -10,7 +10,7 @@ function App() {
     <div className="app-links">
       <div>
         <Link to="/orders">
-          <img src="../public/orders (2).jpg" alt="" />
+          <img src="../../atsiskaytimas/public/orders (2).jpg" alt="" />
           <h3>Orders</h3> 
         </Link>
       </div>

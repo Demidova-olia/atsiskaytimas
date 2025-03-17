@@ -18,11 +18,11 @@ const OrderPage: React.FC = () => {
 
     const { orders, items } = apiContext;
 
-    const order = orders.find((order) => order.order_id.toString() === orderId);
+    const order = orders.find((order) => order.orderId.toString() === orderId);
     if (order) {
       setSelectedOrder(order);
 
-      const item = items.find((item) => item.item_id === order.item_id);
+      const item = items.find((item) => item.itemId === order.itemId);
       if (item) {
         setItemDetails(item);
       } else {
@@ -49,12 +49,12 @@ const OrderPage: React.FC = () => {
       </div>
 
       <div className={styles.orderDetails}>
-        <h2 className={styles.orderHeader}>Order #{selectedOrder.order_id}</h2>
+        <h2 className={styles.orderHeader}>Order #{selectedOrder.orderId}</h2>
         <div className={styles.orderInfo}>
-          <p><strong>Customer Name:</strong> {selectedOrder.customer_name}</p>
-          <p><strong>Order Date:</strong> {new Date(selectedOrder.order_date).toLocaleDateString()}</p>
+          <p><strong>Customer Name:</strong> {selectedOrder.customerName}</p>
+          <p><strong>Order Date:</strong> {new Date(selectedOrder.orderDate).toLocaleDateString()}</p>
           <p><strong>Status:</strong> {selectedOrder.status}</p>
-          <p><strong>Shipping Address:</strong> {selectedOrder.shipping_address}</p>
+          <p><strong>Shipping Address:</strong> {selectedOrder.shippingAddress}</p>
         </div>
 
         <div className={styles.itemContainer}>
@@ -69,14 +69,13 @@ const OrderPage: React.FC = () => {
             <p><strong>Material:</strong> {itemDetails.material}</p>
             <p><strong>Color:</strong> {itemDetails.color}</p>
             <p><strong>Price:</strong> {itemDetails.price} {itemDetails.currency}</p>
-            <p><strong>Available Sizes:</strong> {itemDetails.sizes_available.join(", ")}</p>
             <p><strong>Description:</strong> {itemDetails.description}</p>
           </div>
         </div>
 
         <div className={styles.quantityPrice}>
           <p><strong>Quantity:</strong> {selectedOrder.quantity}</p>
-          <p><strong>Total Price:</strong> {selectedOrder.total_price} {selectedOrder.currency}</p>
+          <p><strong>Total Price:</strong> {selectedOrder.totalPrice} {selectedOrder.currency}</p>
         </div>
       </div>
     </div>
