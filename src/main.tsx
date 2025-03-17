@@ -2,7 +2,7 @@ import './index.css';
 import App from './App.tsx';
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router'; 
+import { BrowserRouter, Route, Routes } from 'react-router';
 import OrdersPage from './pages/orders/OrdersPage.tsx';
 import DesignersPage from './pages/designers/DesignersPage.tsx';
 import CollectionsAndItemsPage from './pages/collectionsAndItems/CollectionsAndItemsPage.tsx';
@@ -21,7 +21,7 @@ import AddCollection from './pages/collectionsAndItems/collections/AddCollection
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/atsiskaytimas">
       <ApiProvider>
         <Routes>
           <Route path="/" element={<App />} />
@@ -45,7 +45,6 @@ createRoot(document.getElementById('root')!).render(
             <Route path=":collectionId/items" element={<ItemsPage />} />
             <Route path=":collectionId" element={<CollectionPage />} />
             <Route path="create" element={<AddCollection />} />
-            {/* <Route path="edit/:id" element={<EditCollection />} /> */}
           </Route>
 
           <Route path="items">

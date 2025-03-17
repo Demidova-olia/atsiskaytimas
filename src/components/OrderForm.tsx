@@ -1,11 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ApiContext } from '../contexts/ApiContext';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import axios from 'axios';
 import { Order, Item } from './types';
 import { API_URL } from '../../config';
 
 const OrderForm: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const context = useContext(ApiContext);
+
   const [customerName, setCustomerName] = useState('');
   const [itemId, setItemId] = useState('');
   const [quantity, setQuantity] = useState(1);
@@ -15,12 +19,16 @@ const OrderForm: React.FC = () => {
   const [orderDate, setOrderDate] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
 
-  const navigate = useNavigate();
-
-  const context = useContext(ApiContext);
+  useEffect(() => {
+    const itemFromPage = location.state?.item;
+    if (itemFromPage) {
+      setItemId(itemFromPage.itemId);
+      setTotalPrice(itemFromPage.price);
+    }
+  }, [location.state?.item]);
 
   if (!context) {
-    return <div>Error: ApiContext not found!</div>;
+    return <p>Loading...</p>; 
   }
 
   const { items } = context;
@@ -30,18 +38,18 @@ const OrderForm: React.FC = () => {
 
     const newOrder: Order = {
       orderId: Date.now().toString(),
-      customerName: customerName,
+      customerName,
       itemId,
       quantity,
-      totalPrice: totalPrice,
+      totalPrice,
       currency,
       status,
-      orderDate: orderDate,
-      shippingAddress: shippingAddress,
+      orderDate,
+      shippingAddress,
     };
 
     try {
-      const response = await axios.post(`${API_URL}/orders`, newOrder); 
+      const response = await axios.post(`${API_URL}/orders`, newOrder);
       console.log('Order added:', response.data);
 
       navigate(`/orders/${newOrder.orderId}`);
@@ -116,20 +124,22 @@ const OrderForm: React.FC = () => {
         <option value="Cancelled">Cancelled</option>
       </select>
 
-      <select
-        value={itemId}
-        onChange={(e) => setItemId(e.target.value)}
-        required
-      >
-        <option value="" disabled>
-          Select Item
-        </option>
-        {items.map((item: Item) => (
-          <option key={item.itemId} value={item.itemId}>
-            {item.name}
-          </option>
-        ))}
-      </select>
+      {location.state?.item ? (
+        <p>Item: {location.state.item.name}</p>
+      ) : (
+        <select
+          value={itemId}
+          onChange={(e) => setItemId(e.target.value)}
+          required
+        >
+          <option value="" disabled>Select Item</option>
+          {items.map((item: Item) => (
+            <option key={item.itemId} value={item.itemId}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+      )}
 
       <button type="submit">Add Order</button>
     </form>
@@ -137,3 +147,4 @@ const OrderForm: React.FC = () => {
 };
 
 export default OrderForm;
+
