@@ -30,7 +30,7 @@ createRoot(document.getElementById('root')!).render(
             <Route index element={<OrdersPage />} />
             <Route path=":orderId" element={<OrderPage />} />
             <Route path="create" element={<CreateOrder />} />
-            <Route path="edit/:id" element={<EditOrder />} />
+            <Route path="edit/:orderId" element={<EditOrder />} />
           </Route>
 
           <Route path="designers">

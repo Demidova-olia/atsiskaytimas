@@ -1,13 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ApiContext } from '../contexts/ApiContext';
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { Order, Item } from './types';
 import { API_URL } from '../../config';
 import './FormStyle.css';
 
-const OrderForm: React.FC = () => {
-  const location = useLocation();
+interface OrderFormProps {
+  existingOrder?: Order; // Allow passing an existing order for editing
+}
+
+const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
   const navigate = useNavigate();
   const context = useContext(ApiContext);
 
@@ -16,38 +19,26 @@ const OrderForm: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [currency, setCurrency] = useState('USD');
-  const [status, setStatus] = useState('Shipped');
+  const [status, setStatus] = useState('Processing');
   const [orderDate, setOrderDate] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
-  const [exchangeRates, setExchangeRates] = useState<Record<string, number>>({});
+  const [itemPrice, setItemPrice] = useState(0);
 
   useEffect(() => {
-    const fetchExchangeRates = async () => {
-      try {
-        const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
-        setExchangeRates(response.data.rates);
-      } catch (error) {
-        console.error('Error fetching exchange rates:', error);
-      }
-    };
-
-    fetchExchangeRates();
-  }, []);
-
-  useEffect(() => {
-    const itemFromPage = location.state?.item;
-    if (itemFromPage) {
-      setItemId(itemFromPage.itemId);
-      setTotalPrice(itemFromPage.price);
+    if (existingOrder) {
+      // Pre-fill the form with the existing order's data
+      setCustomerName(existingOrder.customerName);
+      setItemId(existingOrder.itemId);
+      setQuantity(existingOrder.quantity);
+      setTotalPrice(existingOrder.totalPrice);
+      setCurrency(existingOrder.currency);
+      setStatus(existingOrder.status);
+      setOrderDate(existingOrder.orderDate);
+      setShippingAddress(existingOrder.shippingAddress);
+      const item = context?.items.find(item => item.itemId === existingOrder.itemId);
+      if (item) setItemPrice(item.price);
     }
-  }, [location.state?.item]);
-
-  useEffect(() => {
-    if (exchangeRates[currency]) {
-      const newTotalPrice = location.state?.item?.price * exchangeRates[currency];
-      setTotalPrice(newTotalPrice || 0);
-    }
-  }, [currency, exchangeRates, location.state?.item?.price]);
+  }, [existingOrder, context]);
 
   if (!context) {
     return <p>Loading...</p>;
@@ -58,8 +49,8 @@ const OrderForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newOrder: Order = {
-      orderId: Date.now().toString(),
+    const updatedOrder: Order = {
+      orderId: existingOrder ? existingOrder.orderId : Date.now().toString(),
       customerName,
       itemId,
       quantity,
@@ -71,21 +62,19 @@ const OrderForm: React.FC = () => {
     };
 
     try {
-      const response = await axios.post(`${API_URL}/orders`, newOrder);
-      console.log('Order added:', response.data);
+      if (existingOrder) {
+        // Update the existing order
+        await axios.put(`${API_URL}/orders/${existingOrder.orderId}`, updatedOrder);
+        console.log('Order updated:', updatedOrder);
+      } else {
+        // Create a new order if no existing order is passed
+        await axios.post(`${API_URL}/orders`, updatedOrder);
+        console.log('Order added:', updatedOrder);
+      }
 
-      navigate(`/orders/${newOrder.orderId}`);
-
-      setCustomerName('');
-      setItemId('');
-      setQuantity(1);
-      setTotalPrice(0);
-      setCurrency('USD');
-      setStatus('Processing');
-      setOrderDate('');
-      setShippingAddress('');
+      navigate(`/orders/${updatedOrder.orderId}`);
     } catch (error) {
-      console.error('Error adding order:', error);
+      console.error('Error saving order:', error);
     }
   };
 
@@ -129,12 +118,15 @@ const OrderForm: React.FC = () => {
 
       <label htmlFor="totalPrice">Total Price: </label>
       <input
+        className="total-price"
         type="number"
         placeholder="Total Price"
-        value={totalPrice}
+        value={totalPrice.toFixed(2)} 
         onChange={(e) => setTotalPrice(Number(e.target.value))}
         required
+        disabled
       />
+      <p>Item Price: {itemPrice}</p>
 
       <label htmlFor="currency">Currency: </label>
       <select
@@ -159,43 +151,22 @@ const OrderForm: React.FC = () => {
         <option value="Cancelled">Cancelled</option>
       </select>
 
-      {location.state?.item ? (
-        <>
-          <p>Item to order: {location.state.item.name}</p>
-          <div className="order-item-image">
-            <img
-              src={location.state.item.image}
-              alt={location.state.item.name}
-              className="item-image"
-            />
-          </div>
-        </>
-      ) : (
-        <select
-          value={itemId}
-          onChange={(e) => setItemId(e.target.value)}
-          required
-        >
-          <option value="" disabled>Select Item</option>
-          {items.map((item: Item) => (
-            <option key={item.itemId} value={item.itemId}>
-              {item.name}
-              <div className="order-item-image">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="item-image"
-                />
-              </div>
-            </option>
-          ))}
-        </select>
-      )}
+      <select
+        value={itemId}
+        onChange={(e) => setItemId(e.target.value)}
+        required
+      >
+        <option value="" disabled>Select Item</option>
+        {items.map((item: Item) => (
+          <option key={item.itemId} value={item.itemId}>
+            {item.name}
+          </option>
+        ))}
+      </select>
 
-      <button type="submit">Add Order</button>
+      <button type="submit">Save Order</button>
     </form>
   );
 };
 
 export default OrderForm;
-

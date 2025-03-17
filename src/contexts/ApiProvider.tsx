@@ -33,7 +33,10 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
         dispatch({ type: 'SET_ORDERS', payload: ordersRes.data });
         dispatch({ type: 'SET_LOADING', payload: false });
       } catch (error) {
-        dispatch({ type: 'SET_ERROR', payload: 'Failed to load data' });
+        dispatch({
+          type: 'SET_ERROR',
+          payload: error instanceof Error ? error.message : 'Failed to load data',
+        });
         console.error(error);
       }
     };
@@ -41,12 +44,14 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
     fetchData();
   }, []);
 
+  // Define action handlers
   const addDesigner = (designer: Designer) => {
     dispatch({ type: 'ADD_DESIGNER', payload: designer });
   };
+
   const updateDesigner = (designer: Designer) => {
     dispatch({ type: 'UPDATE_DESIGNER', payload: designer });
-  }; 
+  };
 
   const addCollection = (collection: Collection) => {
     dispatch({ type: 'ADD_COLLECTION', payload: collection });
@@ -68,6 +73,11 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
     dispatch({ type: 'REMOVE_COLLECTION', payload: collectionId });
   };
 
+
+  const removeOrder = (orderId: string) => {
+    dispatch({ type: 'REMOVE_ORDER', payload: orderId });
+  };
+
   return (
     <ApiContext.Provider
       value={{
@@ -77,18 +87,18 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
         orders: state.orders,
         loading: state.loading,
         error: state.error,
-        updateDesigner,
         addDesigner,
+        updateDesigner, 
         addCollection,
         addItem,
         addOrder,
         removeDesigner,
         removeCollection,
-        dispatch, 
+        removeOrder,
+        dispatch,
       }}
     >
       {children}
     </ApiContext.Provider>
   );
 };
-

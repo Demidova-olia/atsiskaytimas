@@ -43,49 +43,56 @@
       "designerId": "1",
       "name": "Spring 2025 Collection",
       "season": "Spring",
-      "year": 2025
+      "year": 2025,
+      "id": "12c3"
     },
     {
       "collectionId": "2",
       "designerId": "1",
       "name": "Summer 2025 Collection",
       "season": "Summer",
-      "year": 2025
+      "year": 2025,
+      "id": "e5b0"
     },
     {
       "collectionId": "3",
       "designerId": "2",
       "name": "Off-White Fall/Winter 2025",
       "season": "Fall/Winter",
-      "year": 2025
+      "year": 2025,
+      "id": "19b0"
     },
     {
       "collectionId": "c1ee",
       "designerId": "8747",
       "name": "fherhewh",
       "season": "sdysryser",
-      "year": 1990
+      "year": 1990,
+      "id": "2f42"
     },
     {
       "collectionId": "b3f4",
       "designerId": null,
       "name": "dyhvhvt",
       "season": "sgsrsy",
-      "year": 1963
+      "year": 1963,
+      "id": "c5b5"
     },
     {
       "collectionId": "f81a",
       "designerId": "8747",
       "name": "fgsrer",
       "season": "werew",
-      "year": 1569
+      "year": 1569,
+      "id": "e09f"
     },
     {
       "collectionId": "133f",
       "designerId": null,
       "name": "rtwetQ",
       "season": "E",
-      "year": 1598
+      "year": 1598,
+      "id": "9c05"
     }
   ],
   "items": [
@@ -99,7 +106,8 @@
       "currency": "USD",
       "color": "Red",
       "description": "A beautiful floral dress perfect for spring events.",
-      "image": "https://th.bing.com/th/id/R.0e21ccea8ffb3b2e292a6ad4435a9f86?rik=LNqS19UP2RRW3A&pid=ImgRaw&r=0"
+      "image": "https://th.bing.com/th/id/R.0e21ccea8ffb3b2e292a6ad4435a9f86?rik=LNqS19UP2RRW3A&pid=ImgRaw&r=0",
+      "id": "6f37"
     },
     {
       "itemId": "2",
@@ -111,7 +119,8 @@
       "currency": "USD",
       "color": "Blue",
       "description": "A stylish striped blouse ideal for casual outings.",
-      "image": "https://i.pinimg.com/736x/dd/9f/38/dd9f380ae28269fc17dd9a33511cc36b.jpg"
+      "image": "https://i.pinimg.com/736x/dd/9f/38/dd9f380ae28269fc17dd9a33511cc36b.jpg",
+      "id": "727e"
     },
     {
       "itemId": "3",
@@ -123,7 +132,8 @@
       "currency": "USD",
       "color": "Light Blue",
       "description": "Comfortable denim shorts for hot summer days.",
-      "image": "https://handcmediastorage.blob.core.windows.net/productimages/SR/SRPZZ002-B40-170867-1400px-1820px.jpg"
+      "image": "https://handcmediastorage.blob.core.windows.net/productimages/SR/SRPZZ002-B40-170867-1400px-1820px.jpg",
+      "id": "eafd"
     },
     {
       "itemId": "4",
@@ -135,7 +145,8 @@
       "currency": "USD",
       "color": "Black",
       "description": "A limited edition hoodie with the Off-White logo.",
-      "image": "https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/43/P00426238.jpg"
+      "image": "https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/43/P00426238.jpg",
+      "id": "f87b"
     },
     {
       "itemId": "5",
@@ -147,7 +158,8 @@
       "currency": "USD",
       "color": "White/Black",
       "description": "Trendy sneakers with the signature Off-White design.",
-      "image": "https://th.bing.com/th/id/OIP.N2Lpe-xIDD4j46ypsx3UCAAAAA?rs=1&pid=ImgDetMain"
+      "image": "https://th.bing.com/th/id/OIP.N2Lpe-xIDD4j46ypsx3UCAAAAA?rs=1&pid=ImgDetMain",
+      "id": "dc4d"
     },
     {
       "itemId": "6294",
@@ -156,7 +168,8 @@
       "material": "ngkghj",
       "price": 200,
       "currency": "USD",
-      "image": "https://m.media-amazon.com/images/I/71n-G9ndREL._AC_UY1000_.jpg"
+      "image": "https://m.media-amazon.com/images/I/71n-G9ndREL._AC_UY1000_.jpg",
+      "id": "41e3"
     },
     {
       "itemId": "1741935144656",
@@ -165,7 +178,8 @@
       "material": "hbgjyg",
       "price": 800,
       "currency": "USD",
-      "image": "https://ajeworld.co.nz/cdn/shop/files/25SU5469_COL-FRL_1.jpg?v=1737641120"
+      "image": "https://ajeworld.co.nz/cdn/shop/files/25SU5469_COL-FRL_1.jpg?v=1737641120",
+      "id": "56ec"
     }
   ],
   "orders": [
@@ -178,7 +192,8 @@
       "currency": "USD",
       "status": "Shipped",
       "orderDate": "2025-03-01",
-      "shippingAddress": "123 Main Street, New York, NY, 10001"
+      "shippingAddress": "123 Main Street, New York, NY, 10001",
+      "id": "ad72"
     },
     {
       "orderId": "2",
@@ -189,7 +204,8 @@
       "currency": "USD",
       "status": "Delivered",
       "orderDate": "2025-03-05",
-      "shippingAddress": "456 Elm Street, Los Angeles, CA, 90001"
+      "shippingAddress": "456 Elm Street, Los Angeles, CA, 90001",
+      "id": "0550"
     },
     {
       "orderId": "3",
@@ -200,7 +216,8 @@
       "currency": "USD",
       "status": "In Progress",
       "orderDate": "2025-03-03",
-      "shippingAddress": "789 Oak Avenue, Chicago, IL, 60601"
+      "shippingAddress": "789 Oak Avenue, Chicago, IL, 60601",
+      "id": "af6a"
     },
     {
       "orderId": "4",
@@ -211,7 +228,8 @@
       "currency": "USD",
       "status": "Shipped",
       "orderDate": "2025-03-06",
-      "shippingAddress": "321 Pine Road, Miami, FL, 33101"
+      "shippingAddress": "321 Pine Road, Miami, FL, 33101",
+      "id": "5b38"
     },
     {
       "orderId": "5",
@@ -222,7 +240,8 @@
       "currency": "USD",
       "status": "Shipped",
       "orderDate": "2025-03-07",
-      "shippingAddress": "654 Birch Boulevard, San Francisco, CA, 94101"
+      "shippingAddress": "654 Birch Boulevard, San Francisco, CA, 94101",
+      "id": "c3d7"
     },
     {
       "orderId": "6",
@@ -233,7 +252,8 @@
       "currency": "USD",
       "status": "In Progress",
       "orderDate": "2025-03-09",
-      "shippingAddress": "987 Maple Street, Seattle, WA, 98101"
+      "shippingAddress": "987 Maple Street, Seattle, WA, 98101",
+      "id": "220d"
     },
     {
       "orderId": "1c4f",
@@ -244,7 +264,8 @@
       "currency": "EUR",
       "status": "Processing",
       "orderDate": "2025-06-12",
-      "shippingAddress": "n/nk.m"
+      "shippingAddress": "n/nk.m",
+      "id": "8d07"
     },
     {
       "id": "ab3d",
@@ -281,6 +302,18 @@
       "status": "Shipped",
       "orderDate": "2025-03-12",
       "shippingAddress": "ыкпыкры"
+    },
+    {
+      "id": "4c83",
+      "orderId": "1742237836880",
+      "customerName": "dhdhdf",
+      "itemId": "1",
+      "quantity": 13,
+      "totalPrice": 5024.5,
+      "currency": "GBP",
+      "status": "Processing",
+      "orderDate": "2025-03-18",
+      "shippingAddress": "eyerye"
     }
   ]
 }

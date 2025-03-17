@@ -31,7 +31,7 @@ const OrdersPage: React.FC = () => {
             <li key={order.orderId} className={styles.orderListItem}>
               <Link to={`/orders/${order.orderId}`} style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "black" }}>
                 <img
-                  src='../../../public/IMG_9793.jpeg'
+                  src='../../../../atsiskaytimas/public/IMG_9793.jpeg'
                   alt={`Order ${order.orderId}`}
                   className={styles.orderImage}
                 />

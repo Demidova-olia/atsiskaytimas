@@ -16,6 +16,7 @@ export interface ApiContextType {
   addOrder: (order: Order) => void;
   removeDesigner: (designerId: string) => void;
   removeCollection: (collectionId: string) => void;
+  removeOrder: (orderId: string) => void; 
   dispatch: Dispatch<Action>;
 }
 

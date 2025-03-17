@@ -95,3 +95,6 @@ form {
     border-radius: 8px;
     margin-top: 5px;
   }  
+  .total-price {
+    background-color: #333;
+  }
