@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import axios from 'axios'; 
 import { Collection, Designer } from './types';
 import { API_URL } from '../../config'; 
+import './FormStyle.css';
 
 const CollectionForm: React.FC = () => {
   const [name, setName] = useState('');

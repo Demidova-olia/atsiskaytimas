@@ -1,0 +1,97 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #bbb;
+  }
+  label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  button {
+    padding: 12px 20px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+
+  p {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  select {
+    background-color: rgb(1, 1, 1);
+  }
+  
+  select:disabled {
+    color: #888;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }
+  
+  .loading,
+  .success {
+    text-align: center;
+    color: green;
+  }
+
+
+.order-item-image {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .item-image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover; 
+    border-radius: 8px;
+    margin-top: 5px;
+  }  

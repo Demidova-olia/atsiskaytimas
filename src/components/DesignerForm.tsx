@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Designer } from "../components/types"; 
 import { API_URL } from "../../config";
+import './FormStyle.css';
 
 interface DesignerFormProps {
   initialValues: Designer | null;

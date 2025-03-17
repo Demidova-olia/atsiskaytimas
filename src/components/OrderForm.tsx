@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router';
 import axios from 'axios';
 import { Order, Item } from './types';
 import { API_URL } from '../../config';
+import './FormStyle.css';
 
 const OrderForm: React.FC = () => {
   const location = useLocation();
@@ -18,6 +19,20 @@ const OrderForm: React.FC = () => {
   const [status, setStatus] = useState('Shipped');
   const [orderDate, setOrderDate] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
+  const [exchangeRates, setExchangeRates] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const fetchExchangeRates = async () => {
+      try {
+        const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
+        setExchangeRates(response.data.rates);
+      } catch (error) {
+        console.error('Error fetching exchange rates:', error);
+      }
+    };
+
+    fetchExchangeRates();
+  }, []);
 
   useEffect(() => {
     const itemFromPage = location.state?.item;
@@ -27,8 +42,15 @@ const OrderForm: React.FC = () => {
     }
   }, [location.state?.item]);
 
+  useEffect(() => {
+    if (exchangeRates[currency]) {
+      const newTotalPrice = location.state?.item?.price * exchangeRates[currency];
+      setTotalPrice(newTotalPrice || 0);
+    }
+  }, [currency, exchangeRates, location.state?.item?.price]);
+
   if (!context) {
-    return <p>Loading...</p>; 
+    return <p>Loading...</p>;
   }
 
   const { items } = context;
@@ -59,7 +81,7 @@ const OrderForm: React.FC = () => {
       setQuantity(1);
       setTotalPrice(0);
       setCurrency('USD');
-      setStatus('Shipped');
+      setStatus('Processing');
       setOrderDate('');
       setShippingAddress('');
     } catch (error) {
@@ -69,6 +91,7 @@ const OrderForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="customerName">Customer Name: </label>
       <input
         type="text"
         placeholder="Customer Name"
@@ -76,6 +99,8 @@ const OrderForm: React.FC = () => {
         onChange={(e) => setCustomerName(e.target.value)}
         required
       />
+
+      <label htmlFor="orderDate">Order Date: </label>
       <input
         type="date"
         placeholder="Order Date"
@@ -83,6 +108,8 @@ const OrderForm: React.FC = () => {
         onChange={(e) => setOrderDate(e.target.value)}
         required
       />
+
+      <label htmlFor="shippingAddress">Shipping Address: </label>
       <input
         type="text"
         placeholder="Shipping Address"
@@ -90,6 +117,8 @@ const OrderForm: React.FC = () => {
         onChange={(e) => setShippingAddress(e.target.value)}
         required
       />
+
+      <label htmlFor="quantity">Quantity: </label>
       <input
         type="number"
         placeholder="Quantity"
@@ -97,6 +126,8 @@ const OrderForm: React.FC = () => {
         onChange={(e) => setQuantity(Number(e.target.value))}
         required
       />
+
+      <label htmlFor="totalPrice">Total Price: </label>
       <input
         type="number"
         placeholder="Total Price"
@@ -104,6 +135,8 @@ const OrderForm: React.FC = () => {
         onChange={(e) => setTotalPrice(Number(e.target.value))}
         required
       />
+
+      <label htmlFor="currency">Currency: </label>
       <select
         value={currency}
         onChange={(e) => setCurrency(e.target.value)}
@@ -113,6 +146,8 @@ const OrderForm: React.FC = () => {
         <option value="EUR">EUR</option>
         <option value="GBP">GBP</option>
       </select>
+
+      <label htmlFor="status">Status: </label>
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
@@ -125,7 +160,16 @@ const OrderForm: React.FC = () => {
       </select>
 
       {location.state?.item ? (
-        <p>Item: {location.state.item.name}</p>
+        <>
+          <p>Item to order: {location.state.item.name}</p>
+          <div className="order-item-image">
+            <img
+              src={location.state.item.image}
+              alt={location.state.item.name}
+              className="item-image"
+            />
+          </div>
+        </>
       ) : (
         <select
           value={itemId}
@@ -136,6 +180,13 @@ const OrderForm: React.FC = () => {
           {items.map((item: Item) => (
             <option key={item.itemId} value={item.itemId}>
               {item.name}
+              <div className="order-item-image">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="item-image"
+                />
+              </div>
             </option>
           ))}
         </select>
