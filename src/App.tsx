@@ -10,20 +10,20 @@ function App() {
     <div className="app-links">
       <div>
         <Link to="/orders">
-          <img src="../../atsiskaytimas/public/orders (2).jpg" alt="" />
+          <img src="../public/orders (2).jpg" alt="" />
           <h3>Orders</h3> 
         </Link>
       </div>
       <div>
         <Link to="/designers">
-          <img src="../../atsiskaytimas/public/designers.jpg" alt="" />
+          <img src="../public/designers.jpg" alt="" />
           <h3>Designers</h3> 
         </Link>
       
       </div>
       <div>
         <Link to="/collections">
-          <img src="../../atsiskaytimas/public/collections.jpg" alt=''/>
+          <img src="../public/collections.jpg" alt=''/>
           <h3>Collections</h3>
         </Link>
       </div>
