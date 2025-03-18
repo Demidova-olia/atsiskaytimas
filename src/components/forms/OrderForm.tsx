@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ApiContext } from '../contexts/ApiContext';
+import { ApiContext } from '../../contexts/ApiContext';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { Order, Item } from './types';
-import { API_URL } from '../../config';
+import { Order, Item } from '../types';
+import { API_URL } from '../../../config';
 import './FormStyle.css';
 
 interface OrderFormProps {

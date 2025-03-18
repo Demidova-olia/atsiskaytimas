@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { ApiContext } from '../contexts/ApiContext';
+import { ApiContext } from '../../contexts/ApiContext';
 import { useNavigate } from 'react-router';
 import axios from 'axios'; 
-import { Collection, Designer } from './types';
-import { API_URL } from '../../config'; 
+import { Collection, Designer } from '../types';
+import { API_URL } from '../../../config';
 import './FormStyle.css';
 
 const CollectionForm: React.FC = () => {

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Collection } from "../../../components/types";
 import { ApiContext } from "../../../contexts/ApiContext";
 import { API_URL } from "../../../../config";
+import NavigationBar from "../../../components/NavigationBar";
 
 const CollectionPage: React.FC = () => {
     const { collectionId } = useParams<{ collectionId: string }>();
@@ -49,6 +50,7 @@ const CollectionPage: React.FC = () => {
 
     return (
         <div className={styles.pageContainer}>
+            <NavigationBar/>
             <h1>Collection: {selectedCollection.name}</h1>
             <div className={styles.collectionInfo}>
                 <h3>{selectedCollection.name} ({selectedCollection.season} {selectedCollection.year})</h3>

@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import styles from './CollectionsAndItems.module.css';
 import { ApiContext } from "../../contexts/ApiContext";
 import { Collection, Item } from "../../components/types";
+import NavigationBar from "../../components/NavigationBar";
 
 const CollectionsAndItemsPage: React.FC = () => {
   const apiContext = useContext(ApiContext);
@@ -33,6 +34,7 @@ const CollectionsAndItemsPage: React.FC = () => {
 
   return (
     <div>
+      <NavigationBar/>
       <h1>Collections:</h1>
       {collections.length > 0 ? (
         <div>

@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { ApiContext } from "../../contexts/ApiContext";
 import { Order } from "../../components/types";
 import styles from './OrdersPage.module.css';
+import NavigationBar from "../../components/NavigationBar";
 
 const OrdersPage: React.FC = () => {
   const apiContext = useContext(ApiContext);
@@ -23,6 +24,7 @@ const OrdersPage: React.FC = () => {
 
   return (
     <div className={styles.pageContainer}>
+      <NavigationBar/>
       <h1 className={styles.header}>Orders:</h1>
       <Link to="/orders/create" className={styles.addOrderLink}>Make a new order</Link>
       {orders.length > 0 ? (

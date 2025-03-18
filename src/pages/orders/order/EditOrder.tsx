@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { ApiContext } from '../../../contexts/ApiContext';
-import OrderForm from '../../../components/OrderForm';
 import { Order } from '../../../components/types';
+import NavigationBar from '../../../components/NavigationBar';
+import OrderForm from '../../../components/forms/OrderForm';
 
 const EditOrder: React.FC = () => {
   const { orderId } = useParams<{ orderId: string }>();
@@ -35,6 +36,7 @@ const EditOrder: React.FC = () => {
 
   return (
     <div>
+      <NavigationBar/>
       <h1>Edit Order</h1>
       <OrderForm existingOrder={orderToEdit} />
     </div>

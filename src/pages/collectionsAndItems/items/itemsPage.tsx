@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router";
 import styles from './ItemsPage.module.css';
 import { ApiContext } from "../../../contexts/ApiContext";
 import { Item } from "../../../components/types";
+import NavigationBar from "../../../components/NavigationBar";
 
 const ItemsPage: React.FC = () => {
   const { collectionId } = useParams<{ collectionId: string }>();
@@ -27,6 +28,7 @@ const ItemsPage: React.FC = () => {
 
   return (
     <div className={styles.pageContainer}>
+      <NavigationBar/>
       <h1 className={styles.header}>Items in Collection {collectionId}</h1>
       <Link to="/items/create" className={styles.addItemLink}>Add New Item</Link>
       {filteredItems.length > 0 ? (

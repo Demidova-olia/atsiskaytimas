@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../config';
 import { useNavigate } from 'react-router';
 import './FormStyle.css';
+import { API_URL } from '../../../config';
 
 interface ItemFormProps {
   collectionId: string;

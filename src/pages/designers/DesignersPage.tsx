@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { ApiContext } from '../../contexts/ApiContext';
 import { Designer, Collection, Item } from '../../components/types';
 import styles from './DesignersPage.module.css';
+import NavigationBar from '../../components/NavigationBar';
 
 const DesignersPage: React.FC = () => {
   const apiContext = useContext(ApiContext);
@@ -31,6 +32,7 @@ const DesignersPage: React.FC = () => {
 
   return (
     <div className={styles.pageContainer}>
+      <NavigationBar/>
       <h1 className={styles.header}>Designers:</h1>
       <Link to="/designers/create" className={styles.addDesignerLink}>Add New Designer</Link>
       {designers.length > 0 ? (

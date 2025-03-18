@@ -1,0 +1,33 @@
+.navbar {
+    background-color: #2c3e50;
+    padding: 10px 20px;
+  }
+  
+  .navbarLinks {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+  }
+  
+  .navItem {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navItem:hover {
+    background-color: #34495e;
+  }
+  
+  .activeLink {
+    color: rgb(3, 2, 6);
+  }
+  
+  .navbarLinks h3 {
+    margin: 0;
+    font-weight: normal;
+  }
+  

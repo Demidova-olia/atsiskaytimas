@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { Params, useParams, useNavigate } from "react-router";
 import { API_URL } from "../../../config";
 import { Designer } from "../../components/types";
-import DesignerForm from "../../components/DesignerForm";
+import DesignerForm from "../../components/forms/DesignerForm";
+import NavigationBar from "../../components/NavigationBar";
 
 const EditDesigner: React.FC = () => {
   const { id } = useParams<Params>();
@@ -39,6 +40,7 @@ const EditDesigner: React.FC = () => {
 
   return (
     <div className="edit-designer">
+      <NavigationBar/>
       <h1>Edit Designer</h1>
       {designer ? (
         <DesignerForm initialValues={designer} onSave={() => navigate(`/designers/${id}`)} />

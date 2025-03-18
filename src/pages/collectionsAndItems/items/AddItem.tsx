@@ -1,7 +1,9 @@
 
 import React from "react";
 import { useParams } from "react-router";
-import ItemForm from "../../../components/ItemForm";
+import ItemForm from "../../../components/forms/ItemForm";
+import NavigationBar from "../../../components/NavigationBar";
+
 
 const AddItem: React.FC = () => {
   const { collectionId } = useParams<{ collectionId: string }>();
@@ -12,6 +14,7 @@ const AddItem: React.FC = () => {
 
   return (
     <div>
+      <NavigationBar/>
       <h1>Add New Item to Collection {collectionId}</h1>
       <ItemForm collectionId={collectionId} />
     </div>
