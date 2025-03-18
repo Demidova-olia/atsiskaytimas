@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import {useParams } from "react-router"; 
 import { ApiContext } from "../../../contexts/ApiContext";
 import { useNavigate } from "react-router";
+import NavigationBar from "../../../components/NavigationBar";
 
 const ItemPage: React.FC = () => {
   const { itemId } = useParams<{ itemId: string }>();
@@ -34,6 +35,7 @@ const ItemPage: React.FC = () => {
 
   return (
     <div>
+      <NavigationBar/>
       <h1>{item.name}</h1>
       <img src={item.image} alt={item.name} style={{ width: "300px", height: "300px", objectFit: "cover" }} />
       <p>{item.description}</p>

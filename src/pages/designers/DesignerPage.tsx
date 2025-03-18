@@ -5,6 +5,7 @@ import axios from "axios";
 import { Designer } from "../../components/types";
 import { ApiContext } from "../../contexts/ApiContext";
 import { API_URL } from "../../../config";
+import NavigationBar from "../../components/NavigationBar";
 
 const DesignerPage: React.FC = () => {
     const { designerId } = useParams<{ designerId: string }>();
@@ -47,6 +48,7 @@ const DesignerPage: React.FC = () => {
 
     return (
         <div className={styles.pageContainer}>
+            <NavigationBar/>
             <h1>Designer: {designer.name}</h1>
             <div className={styles.designerInfo}>
                 <img src={designer.image} alt={designer.name} className={styles.designerImage} />

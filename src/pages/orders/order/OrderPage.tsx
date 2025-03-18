@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router";
 import styles from "./OrderPage.module.css";
 import { ApiContext } from "../../../contexts/ApiContext";
 import { Item, Order } from "../../../components/types";
+import NavigationBar from "../../../components/NavigationBar";
 
 const OrderPage: React.FC = () => {
   const { orderId } = useParams<Record<string, string>>();
@@ -78,6 +79,7 @@ const OrderPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <NavigationBar/>
       <h1>Order Details</h1>
       <div className={styles.backLink}>
         <Link to="/orders">Back to Orders</Link>
