@@ -12,7 +12,7 @@ const OrderPage: React.FC = () => {
   const apiContext = useContext(ApiContext); 
 
   if (!apiContext) {
-    throw new Error("ApiContext is not provided. Ensure ApiProvider is used correctly.");
+    throw new Error("ApiContext is not provided. Ensure ApiProvider is used correctly");
   }
 
   const { orders, items, removeOrder } = apiContext;
