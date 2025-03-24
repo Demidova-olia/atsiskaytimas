@@ -82,7 +82,7 @@ const OrderPage: React.FC = () => {
       <NavigationBar/>
       <h1>Order Details</h1>
       <div className={styles.backLink}>
-        <Link to="/orders">Back to Orders</Link>
+        <Link to="/orders">Back to Orders.</Link>
       </div>
 
       <div className={styles.orderDetails}>
