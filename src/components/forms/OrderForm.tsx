@@ -7,7 +7,7 @@ import { API_URL } from '../../../config';
 import './FormStyle.css';
 
 interface OrderFormProps {
-  existingOrder?: Order; // Allow passing an existing order for editing
+  existingOrder?: Order;
 }
 
 const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
@@ -26,7 +26,6 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
 
   useEffect(() => {
     if (existingOrder) {
-      // Pre-fill the form with the existing order's data
       setCustomerName(existingOrder.customerName);
       setItemId(existingOrder.itemId);
       setQuantity(existingOrder.quantity);
@@ -63,11 +62,11 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
 
     try {
       if (existingOrder) {
-        // Update the existing order
+ 
         await axios.put(`${API_URL}/orders/${existingOrder.orderId}`, updatedOrder);
         console.log('Order updated:', updatedOrder);
       } else {
-        // Create a new order if no existing order is passed
+
         await axios.post(`${API_URL}/orders`, updatedOrder);
         console.log('Order added:', updatedOrder);
       }
