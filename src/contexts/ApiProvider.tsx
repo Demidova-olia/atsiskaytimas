@@ -44,7 +44,6 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
     fetchData();
   }, []);
 
-  // Define action handlers
   const addDesigner = (designer: Designer) => {
     dispatch({ type: 'ADD_DESIGNER', payload: designer });
   };
@@ -61,8 +60,14 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
     dispatch({ type: 'ADD_ITEM', payload: item });
   };
 
-  const addOrder = (order: Order) => {
-    dispatch({ type: 'ADD_ORDER', payload: order });
+  const addOrder = async (order: Order) => {
+    try {
+      await axios.post(`${API_URL}/orders`, order);
+      dispatch({ type: 'ADD_ORDER', payload: order });
+    } catch (error) {
+      console.error('Failed to create order:', error);
+      dispatch({ type: 'SET_ERROR', payload: 'Failed to create order' });
+    }
   };
 
   const removeDesigner = (designerId: string) => {
@@ -73,8 +78,7 @@ export const ApiProvider: React.FC<ApiProviderProps> = ({ children }) => {
     dispatch({ type: 'REMOVE_COLLECTION', payload: collectionId });
   };
 
-
-  const removeOrder = (orderId: string) => {
+  const removeOrder = (orderId: string) => { 
     dispatch({ type: 'REMOVE_ORDER', payload: orderId });
   };
 

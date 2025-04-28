@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ApiContext } from '../../contexts/ApiContext';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router'; 
 import axios from 'axios';
 import { Order, Item } from '../types';
 import { API_URL } from '../../../config';
 import './FormStyle.css';
 
 interface OrderFormProps {
-  existingOrder?: Order; // Allow passing an existing order for editing
+  existingOrder?: Order;
 }
 
 const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
   const navigate = useNavigate();
+  const location = useLocation(); 
   const context = useContext(ApiContext);
 
   const [customerName, setCustomerName] = useState('');
@@ -26,7 +27,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
 
   useEffect(() => {
     if (existingOrder) {
-      // Pre-fill the form with the existing order's data
+  
       setCustomerName(existingOrder.customerName);
       setItemId(existingOrder.itemId);
       setQuantity(existingOrder.quantity);
@@ -35,10 +36,22 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
       setStatus(existingOrder.status);
       setOrderDate(existingOrder.orderDate);
       setShippingAddress(existingOrder.shippingAddress);
+
       const item = context?.items.find(item => item.itemId === existingOrder.itemId);
       if (item) setItemPrice(item.price);
+    } else if (location.state?.item) {
+
+      const item = location.state.item as Item;
+      setItemId(item.itemId);
+      setItemPrice(item.price);
+      setTotalPrice(item.price); 
     }
-  }, [existingOrder, context]);
+  }, [existingOrder, location.state, context]);
+
+  useEffect(() => {
+  
+    setTotalPrice(itemPrice * quantity);
+  }, [itemPrice, quantity]);
 
   if (!context) {
     return <p>Loading...</p>;
@@ -63,11 +76,9 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
 
     try {
       if (existingOrder) {
-        // Update the existing order
         await axios.put(`${API_URL}/orders/${existingOrder.orderId}`, updatedOrder);
         console.log('Order updated:', updatedOrder);
       } else {
-        // Create a new order if no existing order is passed
         await axios.post(`${API_URL}/orders`, updatedOrder);
         console.log('Order added:', updatedOrder);
       }
@@ -80,7 +91,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="customerName">Customer Name: </label>
+      <label htmlFor="customerName">Customer Name:</label>
       <input
         type="text"
         placeholder="Customer Name"
@@ -89,7 +100,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
         required
       />
 
-      <label htmlFor="orderDate">Order Date: </label>
+      <label htmlFor="orderDate">Order Date:</label>
       <input
         type="date"
         placeholder="Order Date"
@@ -98,7 +109,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
         required
       />
 
-      <label htmlFor="shippingAddress">Shipping Address: </label>
+      <label htmlFor="shippingAddress">Shipping Address:</label>
       <input
         type="text"
         placeholder="Shipping Address"
@@ -107,28 +118,28 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
         required
       />
 
-      <label htmlFor="quantity">Quantity: </label>
+      <label htmlFor="quantity">Quantity:</label>
       <input
         type="number"
         placeholder="Quantity"
         value={quantity}
+        min={1}
         onChange={(e) => setQuantity(Number(e.target.value))}
         required
       />
 
-      <label htmlFor="totalPrice">Total Price: </label>
+      <p>Item Price: {itemPrice.toFixed(2)}</p>
+
+      <label htmlFor="totalPrice">Total Price:</label>
       <input
         className="total-price"
         type="number"
         placeholder="Total Price"
-        value={totalPrice.toFixed(2)} 
-        onChange={(e) => setTotalPrice(Number(e.target.value))}
-        required
+        value={totalPrice.toFixed(2)}
         disabled
       />
-      <p>Item Price: {itemPrice}</p>
 
-      <label htmlFor="currency">Currency: </label>
+      <label htmlFor="currency">Currency:</label>
       <select
         value={currency}
         onChange={(e) => setCurrency(e.target.value)}
@@ -139,21 +150,29 @@ const OrderForm: React.FC<OrderFormProps> = ({ existingOrder }) => {
         <option value="GBP">GBP</option>
       </select>
 
-      <label htmlFor="status">Status: </label>
+      <label htmlFor="status">Status:</label>
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
         required
       >
-        <option value="Shipped">Shipped</option>
         <option value="Processing">Processing</option>
+        <option value="Shipped">Shipped</option>
         <option value="Delivered">Delivered</option>
         <option value="Cancelled">Cancelled</option>
       </select>
 
+      <label htmlFor="itemId">Select Item:</label>
       <select
         value={itemId}
-        onChange={(e) => setItemId(e.target.value)}
+        onChange={(e) => {
+          const selectedId = e.target.value;
+          setItemId(selectedId);
+          const selectedItem = items.find(item => item.itemId === selectedId);
+          if (selectedItem) {
+            setItemPrice(selectedItem.price);
+          }
+        }}
         required
       >
         <option value="" disabled>Select Item</option>

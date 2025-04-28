@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Designer } from "../types"; 
 import { API_URL } from "../../../config";
+import { useNavigate } from "react-router";
 import './FormStyle.css';
 
 interface DesignerFormProps {
@@ -17,12 +18,13 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ initialValues, onSave }) =>
   const [phone, setPhone] = useState(initialValues?.contact.phone || "");
   const [website, setWebsite] = useState(initialValues?.contact.website || "");
   const [image, setImage] = useState(initialValues?.image || "");
+  
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const updatedDesigner: Designer = {
-      id: initialValues?.id || "", 
+    const designerData = {
       name,
       bio,
       country,
@@ -36,16 +38,26 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ initialValues, onSave }) =>
 
     try {
       if (initialValues?.id) {
-       
+     
+        const updatedDesigner: Designer = {
+          id: initialValues.id,
+          ...designerData,
+        };
+
         await axios.put(`${API_URL}/designers/${initialValues.id}`, updatedDesigner);
+        await onSave(); 
+        navigate(`/designers/${initialValues.id}`); 
       } else {
-       
-        await axios.post(`${API_URL}/designers`, updatedDesigner);
+   
+        const response = await axios.post(`${API_URL}/designers`, designerData);
+        const newDesigner = response.data;
+
+        await onSave(); 
+        navigate(`/designers/${newDesigner.id}`);
       }
-      onSave();
     } catch (error) {
       console.error("Failed to update or create designer:", error);
-      alert("Failed to save designer");
+      alert("Failed to save designer. Please try again.");
     }
   };
 
@@ -102,14 +114,12 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ initialValues, onSave }) =>
         placeholder="Website"
         value={website}
         onChange={(e) => setWebsite(e.target.value)}
-        required
       />
       <input
         type="url"
         placeholder="Image URL"
         value={image}
         onChange={(e) => setImage(e.target.value)}
-        required
       />
       <button type="submit">{initialValues?.id ? "Edit Designer" : "Add Designer"}</button>
     </form>
@@ -117,5 +127,3 @@ const DesignerForm: React.FC<DesignerFormProps> = ({ initialValues, onSave }) =>
 };
 
 export default DesignerForm;
-
-
