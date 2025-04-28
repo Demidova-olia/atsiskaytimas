@@ -23,18 +23,6 @@
         "website": "https://www.off---white.com"
       },
       "image": "https://th.bing.com/th/id/R.32bfdc7128f12686b4c9d1233eadceba?rik=k0PR%2fHmxo3HScA&pid=ImgRaw&r=0"
-    },
-    {
-      "id": "8747",
-      "name": "sfsgsfg",
-      "bio": "fddsgsfga",
-      "country": "dfhsdinfehi",
-      "contact": {
-        "email": "erere@sdfsdf.cdaf",
-        "phone": "+69645862",
-        "website": "https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
-      },
-      "image": "https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
     }
   ],
   "collections": [
@@ -64,7 +52,7 @@
     },
     {
       "collectionId": "c1ee",
-      "designerId": "8747",
+      "designerId": null,
       "name": "fherhewh",
       "season": "sdysryser",
       "year": 1990,
@@ -80,7 +68,7 @@
     },
     {
       "collectionId": "f81a",
-      "designerId": "8747",
+      "designerId": null,
       "name": "fgsrer",
       "season": "werew",
       "year": 1569,
